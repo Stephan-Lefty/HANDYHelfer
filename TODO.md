@@ -104,8 +104,8 @@ auftritt.
 - **Datenschutzerklärung** (`PRIVACY.md` + `PRIVACY.en.md`). Sie wird kurz: Die
   App erhebt nichts, überträgt nichts und hat keine Netzwerkverbindung.
 - **Play-Eintrag**: `CALL_PHONE` braucht keine Sondergenehmigung, aber der
-  Eintrag muss erklären, wofür. Entwicklerkonto hängt an
-  info@stephanphoto.berlin, Kontoplatz u/2.
+  Eintrag muss erklären, wofür. Welches Entwicklerkonto und welcher Kontoplatz,
+  steht in der privaten Ablage – nicht hier.
 - **Signaturschlüssel** anlegen (`handyhelfer-release.jks`), Anleitung steht im
   Kopf von `app/build.gradle.kts`.
 - Klären, ob HANDYHelfer **auf dialos.org** erwähnt wird oder eine eigene Seite
@@ -142,7 +142,7 @@ Gradle 8.14 stolpert über dessen vierteilige Versionsnummer
 (`IllegalArgumentException: 26.0.2.1`). Vor dem Bauen:
 
 ```
-export JAVA_HOME=/home/stephan/.gradle/jdks/eclipse_adoptium-17-amd64-linux.2
+export JAVA_HOME=~/.gradle/jdks/eclipse_adoptium-17-amd64-linux.2
 ```
 
 **Lints Versionsvorschläge sind hier falsch.** Für alle vier Bibliotheken meldet

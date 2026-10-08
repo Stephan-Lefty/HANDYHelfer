@@ -1,0 +1,49 @@
+# Lokal gruen heisst nicht gruen. Dieser Lauf baut auf einem leeren Rechner,
+# ohne das JDK und das SDK, die auf Stephans Maschine zufaellig passen.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # JDK 17, nicht neuer: Gradle 8.14 stolpert ueber vierteilige
+      # Versionsnummern wie 26.0.2.1 und bricht mit
+      # "IllegalArgumentException: 26.0.2.1" ab, bevor es irgendetwas tut.
+      - name: JDK 17 einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Gradle einrichten
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Lint
+        run: ./gradlew lintDebug
+
+      - name: APK bauen
+        run: ./gradlew assembleDebug
+
+      # Damit man nach einem roten Lauf sieht, welcher Fall gefallen ist,
+      # ohne ihn lokal nachstellen zu muessen.
+      - name: Testberichte sichern
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testberichte
+          path: |
+            app/build/reports/tests/
+            app/build/reports/lint-results-debug.html
+          retention-days: 14

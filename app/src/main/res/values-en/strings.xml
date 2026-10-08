@@ -26,7 +26,7 @@
     <string name="name_label">Name</string>
     <string name="name_hinweis">for example: Thomas</string>
     <string name="nummer_label">Phone number</string>
-    <string name="nummer_hinweis">for example: +49 170 1234567</string>
+    <string name="nummer_hinweis">for example: +49 152 28817386</string>
     <string name="karte_label">Card for calls</string>
     <string name="karte_erklaerung">This phone has two cards. Choose once — after that it is fixed and there are no more questions.</string>
     <string name="karte_noch_keine">Not chosen yet</string>

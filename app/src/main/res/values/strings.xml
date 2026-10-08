@@ -26,7 +26,7 @@
     <string name="name_label">Name</string>
     <string name="name_hinweis">zum Beispiel: Thomas</string>
     <string name="nummer_label">Telefonnummer</string>
-    <string name="nummer_hinweis">zum Beispiel: +49 170 1234567</string>
+    <string name="nummer_hinweis">zum Beispiel: +49 152 28817386</string>
     <string name="karte_label">Karte für Anrufe</string>
     <string name="karte_erklaerung">In diesem Handy stecken zwei Karten. Einmal wählen – danach steht sie fest, und es kommt keine Rückfrage mehr.</string>
     <string name="karte_noch_keine">Noch nicht gewählt</string>
