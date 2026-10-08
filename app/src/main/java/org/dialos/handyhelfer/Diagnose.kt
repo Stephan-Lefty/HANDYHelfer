@@ -153,6 +153,16 @@ object Diagnose {
     const val BROWSER_INSTALLIERER = "com.google.android.packageinstaller"
 
     /**
+     * F-Droid.
+     *
+     * Der Umweg ueber F-Droid hilft nur, wenn die **App** installiert - nicht,
+     * wenn man die APK von f-droid.org im Browser herunterlaedt. Dann ist der
+     * Installierer wieder der Paketinstallierer und die Sperre dieselbe.
+     * Deshalb fragt der Assistent zuerst nach F-Droid selbst.
+     */
+    const val FDROID_PAKET = "org.fdroid.fdroid"
+
+    /**
      * Ob ein Paket installiert ist.
      *
      * Ab Android 11 nur sichtbar, wenn es im Manifest unter `<queries>` steht -

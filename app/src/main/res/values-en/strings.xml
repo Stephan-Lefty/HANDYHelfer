@@ -40,9 +40,12 @@
     <string name="assistent_kopf">This list checks itself. A tick only appears where the app really looked. Each button opens the page where that step happens — do not go hunting for it.</string>
     <string name="assistent_fertig">Everything is in place. You can open this list again later if something stops working — it will show what changed.</string>
     <string name="schritt_fernhilfe_titel">Install RustDesk</string>
-    <string name="schritt_fernhilfe_text">Without RustDesk nobody can see the screen. It is not in the Play Store — the project withdrew it there because scammers abused it.</string>
+    <string name="schritt_fernhilfe_text">Without RustDesk nobody can see the screen. It is not in the Play Store — the project withdrew it there because scammers abused it. Get it through F-Droid rather than as a file from the browser: otherwise Android will block input control later, and on many devices that cannot be undone.</string>
     <string name="schritt_eingeschraenkt_titel">Allow restricted settings</string>
     <string name="schritt_eingeschraenkt_text">If RustDesk came from the browser, Android blocks the next step: the switch stays greyed out. The release is in RustDesk\'s app info, behind the menu. The app cannot check this one — if the next step works, it was done.</string>
+    <string name="schritt_fdroid_holen_titel">Install F-Droid first</string>
+    <string name="schritt_fdroid_holen_text">The detour only works if F-Droid performs the installation. If you download the RustDesk file in the browser yourself, the source is the same again and so is the block. So F-Droid first, RustDesk from it afterwards.</string>
+    <string name="schritt_knopf_fdroid_holen">Get F-Droid</string>
     <string name="schritt_fdroid_titel">Reinstall RustDesk from F-Droid</string>
     <string name="schritt_fdroid_text">RustDesk came from the browser. Android therefore blocks input control — under accessibility it says it is controlled by a restricted setting and the switch cannot be tapped. On many devices the app info has no menu entry to lift that either. The shorter route: install via F-Droid. It installs differently and the block never arises. Uninstall the old copy first.</string>
     <string name="schritt_apppause_titel">Turn off app pausing for RustDesk</string>

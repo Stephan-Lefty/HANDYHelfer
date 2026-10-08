@@ -40,9 +40,12 @@
     <string name="assistent_kopf">Diese Liste prüft sich selbst. Ein Haken steht nur da, wo die App wirklich nachgesehen hat. Jeder Knopf öffnet die Seite, auf der der Schritt stattfindet – such nicht selbst danach.</string>
     <string name="assistent_fertig">Alles sitzt. Diese Liste lässt sich später wieder aufrufen, wenn etwas nicht mehr geht – dann steht hier, was sich geändert hat.</string>
     <string name="schritt_fernhilfe_titel">RustDesk installieren</string>
-    <string name="schritt_fernhilfe_text">Ohne RustDesk kann niemand auf den Bildschirm sehen. Es steht nicht im Play Store – das Projekt hat es dort zurückgezogen, weil Betrüger es missbraucht haben.</string>
+    <string name="schritt_fernhilfe_text">Ohne RustDesk kann niemand auf den Bildschirm sehen. Es steht nicht im Play Store – das Projekt hat es dort zurückgezogen, weil Betrüger es missbraucht haben. Hol es über F-Droid und nicht als Datei aus dem Browser: Sonst sperrt Android später die Eingabesteuerung, und auf vielen Geräten lässt sich das nicht wieder aufheben.</string>
     <string name="schritt_eingeschraenkt_titel">Eingeschränkte Einstellungen freigeben</string>
     <string name="schritt_eingeschraenkt_text">Wenn RustDesk aus dem Browser kam, sperrt Android den nächsten Schritt: Der Schalter bleibt ausgegraut. Die Freigabe steckt in der App-Info von RustDesk, hinter dem Menü. Die App kann nicht nachsehen, ob das erledigt ist – wenn der nächste Schritt klappt, war es das.</string>
+    <string name="schritt_fdroid_holen_titel">Zuerst F-Droid installieren</string>
+    <string name="schritt_fdroid_holen_text">Der Umweg wirkt nur, wenn F-Droid die Installation macht. Lädst du die RustDesk-Datei selbst im Browser herunter, ist die Quelle wieder dieselbe und die Sperre genauso da. Also erst F-Droid, dann RustDesk daraus.</string>
+    <string name="schritt_knopf_fdroid_holen">F-Droid holen</string>
     <string name="schritt_fdroid_titel">RustDesk neu installieren, aus F-Droid</string>
     <string name="schritt_fdroid_text">RustDesk kam aus dem Browser. Android sperrt deshalb die Eingabesteuerung – unter den Bedienungshilfen steht „Gesteuert durch eingeschränkte Einstellung“, der Schalter lässt sich nicht antippen. Auf vielen Geräten fehlt in der App-Info auch der Menüpunkt, mit dem man das aufheben könnte. Der kürzere Weg: über F-Droid installieren. Das installiert anders, und die Sperre entsteht gar nicht erst. Die alte Fassung vorher deinstallieren.</string>
     <string name="schritt_apppause_titel">App-Pause für RustDesk abschalten</string>

@@ -55,6 +55,10 @@ object Systemseiten {
         ),
     )
 
+    /** F-Droid selbst - die App, nicht der Katalogeintrag. */
+    fun fdroidHolen(context: Context): Boolean =
+        starten(context, Intent(Intent.ACTION_VIEW, "https://f-droid.org/".toUri()))
+
     /** Die Bezugsquelle fuer RustDesk - nicht der Play Store, dort fehlt es. */
     fun fernhilfeHolen(context: Context): Boolean =
         starten(context, Intent(Intent.ACTION_VIEW, Fernhilfe.BEZUGSQUELLE.toUri()))

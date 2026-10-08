@@ -9,6 +9,7 @@ data class Stand(
     val fernhilfeInstalliert: Boolean,
     val bedienhilfeAktiv: Boolean,
     val fernhilfeAusBrowser: Boolean,
+    val fdroidDa: Boolean,
     val helferDa: Boolean,
     val anrufErlaubt: Boolean,
     val mehrereKarten: Boolean,
@@ -20,6 +21,7 @@ data class Stand(
 enum class SchrittArt {
     FERNHILFE_INSTALLIEREN,
     EINGESCHRAENKTE_EINSTELLUNGEN,
+    FDROID_HOLEN,
     NEU_INSTALLIEREN_AUS_FDROID,
     KEINE_APP_PAUSE,
     BEDIENHILFE,
@@ -61,6 +63,14 @@ object Assistent {
     fun schritte(stand: Stand): List<Schritt> {
         val liste = mutableListOf<Schritt>()
 
+        // F-Droid steht vor RustDesk, auch beim allerersten Mal: Wer RustDesk
+        // als Datei aus dem Browser laedt, bekommt die Eingabesteuerung
+        // gesperrt ("Gesteuert durch eingeschraenkte Einstellung") und auf
+        // vielen Geraeten keine Moeglichkeit, das wieder aufzuheben. Der
+        // Umweg ist also kein Umweg, sondern der einzige Weg, der haelt.
+        if (!stand.fernhilfeInstalliert && !stand.fdroidDa) {
+            liste += Schritt(SchrittArt.FDROID_HOLEN, erledigt = false)
+        }
         liste += Schritt(SchrittArt.FERNHILFE_INSTALLIEREN, stand.fernhilfeInstalliert)
 
         if (stand.fernhilfeInstalliert) {
@@ -79,6 +89,13 @@ object Assistent {
                 // aus F-Droid": Das installiert sitzungsbasiert, und die
                 // Sperre greift gar nicht erst.
                 if (stand.fernhilfeAusBrowser) {
+                    // Reihenfolge ist hier der ganze Punkt: Wer die APK von
+                    // f-droid.org im Browser herunterlaedt, hat wieder den
+                    // Paketinstallierer als Quelle und dieselbe Sperre. Erst
+                    // F-Droid selbst, dann RustDesk daraus.
+                    if (!stand.fdroidDa) {
+                        liste += Schritt(SchrittArt.FDROID_HOLEN, erledigt = false)
+                    }
                     liste += Schritt(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID, erledigt = false)
                 } else {
                     liste += Schritt(

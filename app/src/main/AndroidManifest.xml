@@ -47,6 +47,7 @@
     -->
     <queries>
         <package android:name="com.carriez.flutter_hbb" />
+        <package android:name="org.fdroid.fdroid" />
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" />

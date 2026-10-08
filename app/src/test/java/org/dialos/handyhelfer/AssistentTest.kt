@@ -11,6 +11,7 @@ class AssistentTest {
         fernhilfeInstalliert = false,
         bedienhilfeAktiv = false,
         fernhilfeAusBrowser = false,
+        fdroidDa = false,
         helferDa = false,
         anrufErlaubt = false,
         mehrereKarten = false,
@@ -23,6 +24,7 @@ class AssistentTest {
         fernhilfeInstalliert = true,
         bedienhilfeAktiv = true,
         fernhilfeAusBrowser = false,
+        fdroidDa = false,
         helferDa = true,
         anrufErlaubt = true,
         mehrereKarten = false,
@@ -34,11 +36,29 @@ class AssistentTest {
     private fun arten(s: Stand) = Assistent.schritte(s).map { it.art }
 
     @Test
+    fun `F-Droid steht schon vor der ersten Installation`() {
+        // Sonst fuehrt die Liste in dieselbe Falle, aus der sie heraushelfen
+        // soll: Datei aus dem Browser, Eingabesteuerung gesperrt.
+        val liste = arten(leer())
+        val fdroid = liste.indexOf(SchrittArt.FDROID_HOLEN)
+        val rustdesk = liste.indexOf(SchrittArt.FERNHILFE_INSTALLIEREN)
+        assertTrue(fdroid in 0 until rustdesk)
+    }
+
+    @Test
+    fun `mit F-Droid beginnt die Liste direkt bei RustDesk`() {
+        assertEquals(
+            SchrittArt.FERNHILFE_INSTALLIEREN,
+            arten(leer().copy(fdroidDa = true)).first(),
+        )
+    }
+
+    @Test
     fun `ohne Fernhilfe wird nicht nach ihren Schaltern gefragt`() {
         // Sonst stuenden drei Schritte da, die sich erst beantworten lassen,
         // wenn der erste erledigt ist - das liest sich wie vier Probleme
         // statt wie eines.
-        val liste = arten(leer())
+        val liste = arten(leer().copy(fdroidDa = true))
         assertEquals(
             listOf(
                 SchrittArt.FERNHILFE_INSTALLIEREN,
@@ -122,6 +142,26 @@ class AssistentTest {
         val ausBrowser = leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = true)
         assertTrue(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in arten(ausBrowser))
         assertFalse(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN in arten(ausBrowser))
+    }
+
+    @Test
+    fun `ohne F-Droid kommt erst F-Droid, dann RustDesk`() {
+        // Die Falle, die am 2026-10-08 beinahe zugeschnappt waere: Wer die
+        // RustDesk-Datei selbst im Browser herunterlaedt, hat wieder den
+        // Paketinstallierer als Quelle - und dieselbe Sperre.
+        val liste = arten(leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = true))
+        val fdroid = liste.indexOf(SchrittArt.FDROID_HOLEN)
+        val rustdesk = liste.indexOf(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID)
+        assertTrue(fdroid in 0 until rustdesk)
+    }
+
+    @Test
+    fun `mit F-Droid entfaellt der erste der beiden Schritte`() {
+        val liste = arten(
+            leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = true, fdroidDa = true),
+        )
+        assertFalse(SchrittArt.FDROID_HOLEN in liste)
+        assertTrue(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in liste)
     }
 
     @Test

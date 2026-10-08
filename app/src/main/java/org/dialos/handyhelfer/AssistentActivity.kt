@@ -59,6 +59,7 @@ class AssistentActivity : AppCompatActivity() {
         bedienhilfeAktiv = Systemseiten.bedienhilfeAktiv(this),
         fernhilfeAusBrowser = Diagnose.installiertVon(this, Diagnose.FERNHILFE_PAKET)
             == Diagnose.BROWSER_INSTALLIERER,
+        fdroidDa = Diagnose.installiert(this, Diagnose.FDROID_PAKET),
         helferDa = Helfer.eingerichtet(this),
         anrufErlaubt = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
             == PackageManager.PERMISSION_GRANTED,
@@ -107,6 +108,7 @@ class AssistentActivity : AppCompatActivity() {
     private fun titel(art: SchrittArt) = when (art) {
         SchrittArt.FERNHILFE_INSTALLIEREN -> R.string.schritt_fernhilfe_titel
         SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN -> R.string.schritt_eingeschraenkt_titel
+        SchrittArt.FDROID_HOLEN -> R.string.schritt_fdroid_holen_titel
         SchrittArt.NEU_INSTALLIEREN_AUS_FDROID -> R.string.schritt_fdroid_titel
         SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_apppause_titel
         SchrittArt.BEDIENHILFE -> R.string.schritt_bedienhilfe_titel
@@ -121,6 +123,7 @@ class AssistentActivity : AppCompatActivity() {
     private fun erklaerung(art: SchrittArt) = when (art) {
         SchrittArt.FERNHILFE_INSTALLIEREN -> R.string.schritt_fernhilfe_text
         SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN -> R.string.schritt_eingeschraenkt_text
+        SchrittArt.FDROID_HOLEN -> R.string.schritt_fdroid_holen_text
         SchrittArt.NEU_INSTALLIEREN_AUS_FDROID -> R.string.schritt_fdroid_text
         SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_apppause_text
         SchrittArt.BEDIENHILFE -> R.string.schritt_bedienhilfe_text
@@ -133,8 +136,9 @@ class AssistentActivity : AppCompatActivity() {
     }
 
     private fun knopf(art: SchrittArt) = when (art) {
-        SchrittArt.FERNHILFE_INSTALLIEREN -> R.string.schritt_knopf_seite
+        SchrittArt.FERNHILFE_INSTALLIEREN -> R.string.schritt_knopf_fdroid
         SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN -> R.string.schritt_knopf_appinfo
+        SchrittArt.FDROID_HOLEN -> R.string.schritt_knopf_fdroid_holen
         SchrittArt.NEU_INSTALLIEREN_AUS_FDROID -> R.string.schritt_knopf_fdroid
         SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_knopf_appinfo
         SchrittArt.BEDIENHILFE -> R.string.schritt_knopf_bedienungshilfen
@@ -147,8 +151,12 @@ class AssistentActivity : AppCompatActivity() {
 
     private fun ausfuehren(art: SchrittArt) {
         val geklappt = when (art) {
-            SchrittArt.FERNHILFE_INSTALLIEREN -> Systemseiten.fernhilfeHolen(this)
+            // Bewusst die F-Droid-Seite und nicht die Herstellerseite: Von
+            // dort kaeme die Datei ueber den Browser, und die Sperre waere
+            // gleich wieder da.
+            SchrittArt.FERNHILFE_INSTALLIEREN -> Systemseiten.fdroidSeite(this)
             SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN -> Systemseiten.appInfoFernhilfe(this)
+            SchrittArt.FDROID_HOLEN -> Systemseiten.fdroidHolen(this)
             SchrittArt.NEU_INSTALLIEREN_AUS_FDROID -> Systemseiten.fdroidSeite(this)
             SchrittArt.KEINE_APP_PAUSE -> Systemseiten.appInfoFernhilfe(this)
             SchrittArt.BEDIENHILFE -> Systemseiten.bedienungshilfen(this)
