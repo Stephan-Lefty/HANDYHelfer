@@ -10,16 +10,19 @@ on:
 
 jobs:
   pruefen:
-    runs-on: ubuntu-latest
+    # Festgenagelt statt ubuntu-latest: Das Label wandert am 19.10.2026
+    # auf Ubuntu 26, und ein Lauf soll nicht an einem Stichtag von selbst
+    # rot werden.
+    runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # JDK 17, nicht neuer: Gradle 8.14 stolpert ueber vierteilige
       # Versionsnummern wie 26.0.2.1 und bricht mit
       # "IllegalArgumentException: 26.0.2.1" ab, bevor es irgendetwas tut.
       - name: JDK 17 einrichten
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -40,7 +43,7 @@ jobs:
       # ohne ihn lokal nachstellen zu muessen.
       - name: Testberichte sichern
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: testberichte
           path: |
