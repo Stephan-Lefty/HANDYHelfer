@@ -47,6 +47,15 @@ object Systemseiten {
      * sperrt: F-Droid installiert sitzungsbasiert, und die eingeschraenkten
      * Einstellungen greifen dann nicht.
      */
+    /** Die App-Info des Zusatzpakets - dort sitzt seine eigene App-Pause. */
+    fun appInfoZusatz(context: Context): Boolean {
+        val paket = Fernhilfe.gefunden(context)?.zusatzPaket ?: return false
+        return starten(
+            context,
+            Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, "package:$paket".toUri()),
+        )
+    }
+
     /** Die Bezugsquelle des Zusatzpakets, falls die Fernhilfe eines braucht. */
     fun zusatzHolen(context: Context): Boolean {
         val quelle = Fernhilfe.gefunden(context)?.zusatzQuelle ?: return false

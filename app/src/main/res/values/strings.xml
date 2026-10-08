@@ -31,18 +31,21 @@
     <string name="karte_erklaerung">In diesem Handy stecken zwei Karten. Einmal wählen – danach steht sie fest, und es kommt keine Rückfrage mehr.</string>
     <string name="karte_noch_keine">Noch nicht gewählt</string>
     <string name="speichern">Speichern</string>
+    <string name="nummer_leer">Da steht noch keine Nummer.</string>
+    <string name="nummer_zu_kurz">Das sind nur %1$d Ziffern – zu wenig für eine Rufnummer. Steht die Vorwahl mit dabei?</string>
+    <string name="nummer_zu_lang">Das sind %1$d Ziffern – mehr als eine Rufnummer haben kann. Ist eine Ziffer zu viel hineingerutscht?</string>
     <string name="nummer_unbrauchbar">Diese Nummer kann nicht angerufen werden. Bitte noch einmal ansehen.</string>
     <string name="name_fehlt">Bitte einen Namen eintragen.</string>
     <string name="gespeichert">Gespeichert.</string>
 
     <!-- Einrichtungs-Assistent -->
     <string name="assistent">Einrichtung prüfen</string>
-    <string name="assistent_kopf">Diese Liste prüft sich selbst. Ein Haken steht nur da, wo die App wirklich nachgesehen hat. Jeder Knopf öffnet die Seite, auf der der Schritt stattfindet – such nicht selbst danach.</string>
+    <string name="assistent_kopf">Diese Liste prüft sich selbst. Ein Haken steht nur da, wo die App wirklich nachgesehen hat. Ein Fragezeichen heißt: Das kann sie nicht nachsehen – dort entscheidest du selbst, ob es erledigt ist. Jeder Knopf öffnet die Seite, auf der der Schritt stattfindet.</string>
     <string name="assistent_fertig">Alles sitzt. Diese Liste lässt sich später wieder aufrufen, wenn etwas nicht mehr geht – dann steht hier, was sich geändert hat.</string>
     <string name="schritt_fernhilfe_titel">Fernhilfe installieren</string>
     <string name="schritt_fernhilfe_text">Ohne sie kann niemand auf den Bildschirm sehen. Vorgeschlagen ist TeamViewer QuickSupport: Es ist das einzige, mit dem dein Helfer auch wirklich etwas einstellen kann. Für private Hilfe in der Familie ist es kostenlos.</string>
     <string name="schritt_apppause_titel">App-Pause abschalten</string>
-    <string name="schritt_apppause_text">Android entzieht Programmen die Berechtigungen, wenn sie länger nicht benutzt werden. Bei Fernhilfe ist genau das der Normalfall – und im Ernstfall steht sie dann ohne Rechte da. Der Schalter heißt „App bei Nichtnutzung pausieren“ und steht in der App-Info.</string>
+    <string name="schritt_apppause_text">Android entzieht Programmen die Berechtigungen, wenn sie länger nicht benutzt werden. Bei Fernhilfe ist genau das der Normalfall – und im Ernstfall steht sie dann ohne Rechte da. Der Schalter heißt „App bei Nichtnutzung pausieren“ und steht in der App-Info weiter unten, unter „Nicht verwendete App-Einstellungen“. Er muss aus. Dieser Punkt bleibt mit einem Fragezeichen stehen: Ob er aus ist, verrät Android anderen Programmen nicht.</string>
     <string name="schritt_zusatz_titel">Universal Add-On installieren</string>
     <string name="schritt_zusatz_text">TeamViewer legt die Eingabesteuerung in ein zweites Programm. Ohne das kann dein Helfer nur zusehen. Es kommt aus demselben Store und braucht keine weiteren Einstellungen.</string>
     <string name="schritt_nur_zusehen_titel">Mit dieser Fernhilfe geht nur Zusehen</string>
@@ -52,7 +55,9 @@
     <string name="schritt_bedienhilfe_titel">Eingabesteuerung einschalten</string>
     <string name="schritt_bedienhilfe_text">Ohne sie kann dein Helfer nur zusehen und nichts antippen. Der Schalter steht unter den Bedienungshilfen bei den heruntergeladenen Programmen.</string>
     <string name="schritt_passwort_titel">Festes Passwort setzen</string>
-    <string name="schritt_passwort_text">Ohne das muss bei jeder Sitzung ein wechselndes Einmalpasswort vorgelesen werden – genau daran scheitert Hilfe am Telefon. Mit festem Passwort kennt der Helfer es und braucht nichts zu fragen. Die App kann nicht nachsehen, ob es gesetzt ist.</string>
+    <string name="schritt_passwort_text">Ohne das muss bei jeder Sitzung ein wechselndes Einmalpasswort vorgelesen werden – genau daran scheitert Hilfe am Telefon. Mit festem Passwort kennt der Helfer es und braucht nichts zu fragen. Dieser Punkt bleibt mit einem Fragezeichen stehen: Die App kann nicht nachsehen, ob es gesetzt ist.</string>
+    <string name="schritt_apppause_zusatz_titel">App-Pause auch beim Add-On abschalten</string>
+    <string name="schritt_apppause_zusatz_text">Dasselbe noch einmal für das Universal Add-On. Das ist nicht doppelt gemoppelt: Die Ausnahme für TeamViewer gilt nicht fürs Add-On mit – und dort läuft der Dienst, der das Tippen macht. Auch dieser Punkt bleibt mit einem Fragezeichen stehen.</string>
     <string name="schritt_karte_titel">Karte für Anrufe festlegen</string>
     <string name="schritt_karte_text">In diesem Handy stecken zwei Karten, und keine gilt als Standard. Android fragt deshalb bei jedem Anruf zurück, mit welcher gewählt werden soll – der große Knopf führt dann in einen Auswahldialog statt zum Klingeln.</string>
     <string name="schritt_knopf_rustdesk">RustDesk öffnen</string>

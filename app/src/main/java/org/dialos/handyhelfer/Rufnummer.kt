@@ -42,4 +42,35 @@ object Rufnummer {
 
     /** Ob aus der Eingabe eine waehlbare Nummer wird. */
     fun gueltig(eingabe: String?): Boolean = normalisieren(eingabe) != null
+
+    /** Warum eine Eingabe abgelehnt wurde - oder `null`, wenn sie taugt. */
+    enum class Mangel { LEER, ZU_KURZ, ZU_LANG }
+
+    /**
+     * Sagt, *was* nicht stimmt.
+     *
+     * "Diese Nummer kann nicht angerufen werden" war die Meldung bis zum
+     * 2026-10-08 - und damit nutzlos: Sie nennt weder den Grund noch die
+     * Abhilfe, und wer sie dreimal sieht, gibt auf. Am Geraet ist genau das
+     * passiert.
+     */
+    fun mangel(eingabe: String?): Mangel? {
+        if (eingabe.isNullOrBlank()) return Mangel.LEER
+        val roh = eingabe.trim()
+        val ziffern = roh.filter { it.isDigit() }
+        val ohneDoppelnull = if (roh.startsWith("00")) ziffern.removePrefix("00") else ziffern
+        return when {
+            ohneDoppelnull.isEmpty() -> Mangel.LEER
+            ohneDoppelnull.length < MIN_ZIFFERN -> Mangel.ZU_KURZ
+            ohneDoppelnull.length > MAX_ZIFFERN -> Mangel.ZU_LANG
+            else -> null
+        }
+    }
+
+    /** Wie viele Ziffern die Eingabe nach dem Aufraeumen hat. */
+    fun ziffernzahl(eingabe: String?): Int {
+        val roh = eingabe?.trim().orEmpty()
+        val ziffern = roh.filter { it.isDigit() }
+        return if (roh.startsWith("00")) ziffern.removePrefix("00").length else ziffern.length
+    }
 }

@@ -54,8 +54,15 @@ class EinrichtungActivity : AppCompatActivity() {
             Toast.makeText(this, R.string.name_fehlt, Toast.LENGTH_LONG).show()
             return false
         }
-        if (!Rufnummer.gueltig(nummer)) {
-            Toast.makeText(this, R.string.nummer_unbrauchbar, Toast.LENGTH_LONG).show()
+        Rufnummer.mangel(nummer)?.let { mangel ->
+            val text = when (mangel) {
+                Rufnummer.Mangel.LEER -> getString(R.string.nummer_leer)
+                Rufnummer.Mangel.ZU_KURZ ->
+                    getString(R.string.nummer_zu_kurz, Rufnummer.ziffernzahl(nummer))
+                Rufnummer.Mangel.ZU_LANG ->
+                    getString(R.string.nummer_zu_lang, Rufnummer.ziffernzahl(nummer))
+            }
+            Toast.makeText(this, text, Toast.LENGTH_LONG).show()
             return false
         }
         if (!Helfer.speichern(this, name, nummer)) {

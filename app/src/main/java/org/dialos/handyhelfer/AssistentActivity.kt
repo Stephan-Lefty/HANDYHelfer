@@ -114,6 +114,7 @@ class AssistentActivity : AppCompatActivity() {
         SchrittArt.BEDIENHILFE -> R.string.schritt_bedienhilfe_titel
         SchrittArt.FESTES_PASSWORT -> R.string.schritt_passwort_titel
         SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_apppause_titel
+        SchrittArt.KEINE_APP_PAUSE_ZUSATZ -> R.string.schritt_apppause_zusatz_titel
         SchrittArt.KARTE_FUER_ANRUFE -> R.string.schritt_karte_titel
         SchrittArt.HELFER -> R.string.schritt_helfer_titel
         SchrittArt.ANRUFEN_DUERFEN -> R.string.schritt_anrufen_titel
@@ -128,6 +129,7 @@ class AssistentActivity : AppCompatActivity() {
         SchrittArt.BEDIENHILFE -> R.string.schritt_bedienhilfe_text
         SchrittArt.FESTES_PASSWORT -> R.string.schritt_passwort_text
         SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_apppause_text
+        SchrittArt.KEINE_APP_PAUSE_ZUSATZ -> R.string.schritt_apppause_zusatz_text
         SchrittArt.KARTE_FUER_ANRUFE -> R.string.schritt_karte_text
         SchrittArt.HELFER -> R.string.schritt_helfer_text
         SchrittArt.ANRUFEN_DUERFEN -> R.string.schritt_anrufen_text
@@ -142,7 +144,8 @@ class AssistentActivity : AppCompatActivity() {
 
         SchrittArt.BEDIENHILFE -> R.string.schritt_knopf_bedienungshilfen
         SchrittArt.FESTES_PASSWORT -> R.string.schritt_knopf_fernhilfe_oeffnen
-        SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_knopf_appinfo
+        SchrittArt.KEINE_APP_PAUSE, SchrittArt.KEINE_APP_PAUSE_ZUSATZ ->
+            R.string.schritt_knopf_appinfo
         SchrittArt.KARTE_FUER_ANRUFE -> R.string.schritt_knopf_karte
         SchrittArt.HELFER -> R.string.schritt_knopf_eintragen
         SchrittArt.ANRUFEN_DUERFEN -> R.string.schritt_knopf_erlauben
@@ -158,6 +161,7 @@ class AssistentActivity : AppCompatActivity() {
             SchrittArt.BEDIENHILFE -> Systemseiten.bedienungshilfen(this)
             SchrittArt.FESTES_PASSWORT -> Fernhilfe.oeffnen(this)
             SchrittArt.KEINE_APP_PAUSE -> Systemseiten.appInfoFernhilfe(this)
+            SchrittArt.KEINE_APP_PAUSE_ZUSATZ -> Systemseiten.appInfoZusatz(this)
             SchrittArt.KARTE_FUER_ANRUFE -> karteWaehlen()
 
             SchrittArt.HELFER -> {

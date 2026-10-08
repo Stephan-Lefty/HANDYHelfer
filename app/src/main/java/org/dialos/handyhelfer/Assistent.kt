@@ -28,6 +28,7 @@ enum class SchrittArt {
     ZUSATZ_INSTALLIEREN,
     NUR_ZUSEHEN,
     KEINE_APP_PAUSE,
+    KEINE_APP_PAUSE_ZUSATZ,
     BEDIENHILFE,
     FESTES_PASSWORT,
     KARTE_FUER_ANRUFE,
@@ -90,6 +91,19 @@ object Assistent {
             }
 
             liste += Schritt(SchrittArt.KEINE_APP_PAUSE, erledigt = false, pruefbar = false)
+
+            // Und noch einmal fuer das Zusatzpaket. Das ist nicht doppelt
+            // gemoppelt: Am 2026-10-08 am Geraet gesehen, dass die Ausnahme
+            // fuer das Hauptprogramm das Add-On nicht mit einschliesst - und
+            // dort laeuft der Dienst, der das Tippen macht. Verliert er seine
+            // Rechte, nuetzt das berechtigte Hauptprogramm nichts.
+            if (stand.zusatzNoetig && stand.zusatzDa) {
+                liste += Schritt(
+                    SchrittArt.KEINE_APP_PAUSE_ZUSATZ,
+                    erledigt = false,
+                    pruefbar = false,
+                )
+            }
         }
 
         // Nur wenn mehr als eine Karte steckt und keine als Standard gilt:

@@ -31,18 +31,21 @@
     <string name="karte_erklaerung">This phone has two cards. Choose once — after that it is fixed and there are no more questions.</string>
     <string name="karte_noch_keine">Not chosen yet</string>
     <string name="speichern">Save</string>
+    <string name="nummer_leer">There is no number yet.</string>
+    <string name="nummer_zu_kurz">That is only %1$d digits — too few for a phone number. Is the area code included?</string>
+    <string name="nummer_zu_lang">That is %1$d digits — more than a phone number can have. Did an extra digit slip in?</string>
     <string name="nummer_unbrauchbar">This number cannot be called. Please check it again.</string>
     <string name="name_fehlt">Please enter a name.</string>
     <string name="gespeichert">Saved.</string>
 
     <!-- Einrichtungs-Assistent -->
     <string name="assistent">Check setup</string>
-    <string name="assistent_kopf">This list checks itself. A tick only appears where the app really looked. Each button opens the page where that step happens — do not go hunting for it.</string>
+    <string name="assistent_kopf">This list checks itself. A tick only appears where the app really looked. A question mark means it cannot look — there you decide yourself whether it is done. Each button opens the page where that step happens.</string>
     <string name="assistent_fertig">Everything is in place. You can open this list again later if something stops working — it will show what changed.</string>
     <string name="schritt_fernhilfe_titel">Install a remote helper</string>
     <string name="schritt_fernhilfe_text">Without one nobody can see the screen. Suggested is TeamViewer QuickSupport: it is the only one your helper can actually change settings with. For private family support it is free.</string>
     <string name="schritt_apppause_titel">Turn off app pausing</string>
-    <string name="schritt_apppause_text">Android revokes permissions from programs that go unused for a while. For remote support that is the normal case — and in an emergency it would stand there without rights. The switch is called “Pause app activity if unused” and sits in the app info.</string>
+    <string name="schritt_apppause_text">Android revokes permissions from programs that go unused for a while. For remote support that is the normal case — and in an emergency it would stand there without rights. The switch is called “Pause app activity if unused” and sits further down in the app info under unused app settings. It must be off. This item keeps a question mark: Android does not tell other programs whether it is off.</string>
     <string name="schritt_zusatz_titel">Install the Universal Add-On</string>
     <string name="schritt_zusatz_text">TeamViewer puts input control into a second program. Without it your helper can only watch. It comes from the same store and needs no further settings.</string>
     <string name="schritt_nur_zusehen_titel">This remote helper can only watch</string>
@@ -52,7 +55,9 @@
     <string name="schritt_bedienhilfe_titel">Turn on input control</string>
     <string name="schritt_bedienhilfe_text">Without it your helper can only watch, not tap. The switch sits under accessibility, among the downloaded programs.</string>
     <string name="schritt_passwort_titel">Set a permanent password</string>
-    <string name="schritt_passwort_text">Without one, a changing one-time password has to be read out for every session — which is exactly where help over the phone breaks down. With a permanent password your helper knows it and need not ask. The app cannot check whether it is set.</string>
+    <string name="schritt_passwort_text">Without one, a changing one-time password has to be read out for every session — which is exactly where help over the phone breaks down. With a permanent password your helper knows it and need not ask. This item keeps a question mark: the app cannot check whether it is set.</string>
+    <string name="schritt_apppause_zusatz_titel">Turn off app pausing for the add-on too</string>
+    <string name="schritt_apppause_zusatz_text">The same again for the Universal Add-On. This is not redundant: the exemption for TeamViewer does not cover the add-on — and that is where the service doing the tapping lives. This item also keeps a question mark.</string>
     <string name="schritt_karte_titel">Choose the card for calls</string>
     <string name="schritt_karte_text">This phone has two SIM cards and neither is the default. Android therefore asks which one to use for every call — the big button then leads into a chooser instead of ringing.</string>
     <string name="schritt_knopf_rustdesk">Open RustDesk</string>
