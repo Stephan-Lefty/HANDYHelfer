@@ -12,6 +12,12 @@
     <string name="geraet_zeile">%1$s · Android %2$s · HANDYHelfer %3$s</string>
 
     <string name="widget_beschreibung">Ein breiter Knopf, der Hilfe holt</string>
+    <string name="hilfe_von">Hilfe von %1$s</string>
+    <string name="widget_auf_startbildschirm">Knopf auf den Startbildschirm legen</string>
+    <string name="widget_schon_da">Der Knopf liegt schon auf dem Startbildschirm.</string>
+    <string name="widget_nicht_moeglich">Dieser Startbildschirm nimmt keine Knöpfe entgegen. Dann hilft nur: lange auf eine freie Stelle tippen und HANDYHelfer aus der Widget-Liste ziehen.</string>
+    <string name="symbol_widget_beschreibung">Ein quadratischer Knopf mit dem Namen</string>
+    <string name="symbol_auf_startbildschirm">Kleines Symbol dazulegen</string>
     <string name="widget_niemand_festgelegt">Noch niemand festgelegt</string>
 
     <!-- Einrichtung -->

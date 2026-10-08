@@ -20,19 +20,6 @@
         android:paddingVertical="18dp"
         android:text="@string/hilfe_holen"
         android:textColor="@color/weiss"
-        android:textSize="26sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/widget_erklaerung"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:textColor="@color/weiss"
-        android:textSize="13sp"
-        android:shadowColor="@color/grau_nacht"
-        android:shadowRadius="3"
-        android:maxLines="1"
-        android:ellipsize="end" />
 </LinearLayout>

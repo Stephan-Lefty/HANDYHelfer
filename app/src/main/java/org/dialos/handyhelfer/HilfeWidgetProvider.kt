@@ -52,13 +52,17 @@ class HilfeWidgetProvider : AppWidgetProvider() {
         private fun bauen(context: Context): RemoteViews {
             val sicht = RemoteViews(context.packageName, R.layout.widget_hilfe)
 
+            // Der Name steht im Knopf, nicht darunter: "Hilfe von Stephan"
+            // sagt auf einen Blick, wer kommt - und liest sich nicht wie ein
+            // Notruf. Wer den Balken sieht, soll keine Hemmung haben, ihn zu
+            // druecken.
             val helfer = Helfer.lesen(context)
             sicht.setTextViewText(
-                R.id.widget_erklaerung,
+                R.id.widget_knopf,
                 if (helfer == null) {
                     context.getString(R.string.widget_niemand_festgelegt)
                 } else {
-                    context.getString(R.string.hilfe_holen_erklaerung, helfer.name)
+                    context.getString(R.string.hilfe_von, helfer.name)
                 },
             )
 

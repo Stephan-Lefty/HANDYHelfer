@@ -12,6 +12,12 @@
     <string name="geraet_zeile">%1$s · Android %2$s · HANDYHelfer %3$s</string>
 
     <string name="widget_beschreibung">A wide button that fetches help</string>
+    <string name="hilfe_von">Help from %1$s</string>
+    <string name="widget_auf_startbildschirm">Put the button on the home screen</string>
+    <string name="widget_schon_da">The button is already on the home screen.</string>
+    <string name="widget_nicht_moeglich">This home screen does not accept buttons. Long-press an empty spot and drag HANDYHelfer from the widget list instead.</string>
+    <string name="symbol_widget_beschreibung">A square button with the name</string>
+    <string name="symbol_auf_startbildschirm">Add the small symbol too</string>
     <string name="widget_niemand_festgelegt">Nobody chosen yet</string>
 
     <!-- Setup -->

@@ -69,5 +69,25 @@
             android:textSize="21sp"
             android:backgroundTint="@color/blau"
             app:cornerRadius="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/knopf_startbildschirm"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="14dp"
+            android:text="@string/widget_auf_startbildschirm"
+            android:textSize="17sp"
+            app:cornerRadius="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/knopf_symbol"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/symbol_auf_startbildschirm"
+            android:textSize="17sp"
+            app:cornerRadius="16dp" />
     </LinearLayout>
 </ScrollView>
