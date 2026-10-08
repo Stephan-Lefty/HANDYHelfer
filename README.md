@@ -138,6 +138,53 @@ die vier Fernhilfen und das TeamViewer-Zusatzpaket. Die Berechtigung, die ganze
 App-Liste zu lesen, braucht bei Google eine Sondergenehmigung und wäre für
 diesen Zweck nicht zu rechtfertigen.
 
+## Wer braucht was
+
+Fernhilfe hat zwei Seiten, und auf beiden läuft etwas anderes. Das ist die
+häufigste Verwechslung: **QuickSupport ist die Seite, die Hilfe empfängt** – wer
+hilft, braucht die steuernde Gegenseite.
+
+### Auf dem Handy, das geholfen bekommen soll
+
+| Programm | Woher | Wofür |
+|---|---|---|
+| **HANDYHelfer** | [Datei von hier](#auf-dem-handy-installieren) | der Knopf, der Hilfe holt |
+| **TeamViewer QuickSupport** | [Play Store][tv-qs] | lässt den Helfer auf den Bildschirm sehen |
+| **TeamViewer Universal Add-On** | [Play Store][tv-addon] | lässt ihn auch tippen und wischen |
+
+Die beiden TeamViewer-Pakete **müssen aus dem Play Store kommen**. Als Datei
+heruntergeladen sperrt Android die Eingabesteuerung, und der Helfer kann nur
+zusehen – die Begründung steht weiter oben. HANDYHelfer selbst darf als Datei
+kommen; es braucht die Bedienungshilfen nicht.
+
+Den Weg dorthin muss niemand suchen: Der Assistent in HANDYHelfer öffnet die
+richtigen Store-Seiten und prüft danach selbst, ob es geklappt hat.
+
+### Auf dem Gerät des Helfers
+
+| Programm | Woher | Wann |
+|---|---|---|
+| **TeamViewer Remote Control** | [Play Store][tv-rc] | wenn du vom Handy aus hilfst |
+| **TeamViewer** für Linux, Windows oder Mac | [teamviewer.com][tv-dl] | wenn du vom Rechner aus hilfst |
+
+**HANDYHelfer gehört nicht auf das Gerät des Helfers.** Es ist nur für die
+Seite, die Hilfe holt.
+
+Für private Hilfe in der Familie ist TeamViewer kostenlos. Ein Konto ist nicht
+nötig, lohnt sich aber: Damit lässt sich das Gerät im Adressbuch speichern, und
+die neunstellige Kennung muss nicht bei jeder Sitzung erfragt werden.
+
+### Einmal muss jemand hin
+
+Die Bedienungshilfe freizuschalten geht **nicht aus der Ferne** – das lässt
+Android nicht zu, und keine App kann daran etwas ändern. Rechne für die
+Ersteinrichtung mit zwanzig Minuten vor Ort. Danach läuft es dauerhaft.
+
+[tv-qs]: https://play.google.com/store/apps/details?id=com.teamviewer.quicksupport.market
+[tv-addon]: https://play.google.com/store/apps/details?id=com.teamviewer.quicksupport.addon.universal
+[tv-rc]: https://play.google.com/store/apps/details?id=com.teamviewer.teamviewer.market.mobile
+[tv-dl]: https://www.teamviewer.com/de/download/
+
 ## Auf dem Handy installieren
 
 Die fertige Datei liegt bei den [Veröffentlichungen][rel]. Dieser Link zeigt

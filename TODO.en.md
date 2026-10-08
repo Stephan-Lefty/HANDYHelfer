@@ -2,7 +2,9 @@
 
 # TODO – HANDYHelfer
 
-> **As of 2026-10-08.** First day. 59 tests, lint clean, debug APK ~5.3 MB.
+> **As of 2026-10-08.** First day, evening. Published at
+> github.com/Stephan-Lefty/HANDYHelfer, release 0.1.0 with a signed file is
+> available, CI green. 59 tests, lint clean, debug APK ~5.3 MB.
 >
 > **Tried on a real device** — Motorola edge 50 neo, Android 16, with TeamViewer
 > QuickSupport. The button places calls without asking which SIM, the remote
@@ -64,7 +66,12 @@ Build it when the case actually arises.
 
 ### Before a release
 
-- **Screenshots**: home screen and setup exist; log and help are missing. Watch
+- **Screenshots – postponed until after 2026-10-19.** Home screen and setup
+  exist but come from the test build (its title still says "(Test)"). They need
+  redoing from the release build: home screen with a helper entered, the
+  checklist with ticks and question marks, log, help, and the home screen with
+  both widgets. Use "Thomas" and the drama number +49 152 28817386 as test data —
+  these are public images. Watch
   out — on 2026-10-08 four files showed the **lock screen with a private photo**
   instead of the app, because the display had gone off between captures. They
   were deleted and never committed. Check every image before it goes into the

@@ -2,8 +2,9 @@
 
 # TODO – HANDYHelfer
 
-> **Stand 08.10.2026.** Erster Tag. Das Gerüst steht, 28 Tests grün, Lint ohne
-> Fehler, Debug-APK gebaut (5,3 MB). Inzwischen 33 Tests.
+> **Stand 08.10.2026.** Erster Tag, abends. Veröffentlicht unter
+> github.com/Stephan-Lefty/HANDYHelfer, Release 0.1.0 mit signierter Datei
+> liegt bereit, CI grün. 59 Tests, Lint ohne Fehler.
 >
 > **Am Gerät gelaufen** – Motorola edge 50 neo, Android 16, am 08.10.2026.
 > Der Startbildschirm steht, der Zustandsbericht erkennt die vergrößerte
@@ -91,7 +92,12 @@ auftritt.
 
 ### Vor einer Veröffentlichung
 
-- **Screenshots** vervollständigen. Vorhanden sind Startseite und Einrichtung;
+- **Screenshots vervollständigen – vertagt auf nach dem 19.10.2026.** Vorhanden
+  sind Startseite und Einrichtung aus der Testfassung (Titel trägt dort noch
+  „(Test)"). Zu machen sind sie aus der Release-Fassung: Startseite mit
+  eingetragenem Helfer, die Prüfliste mit Haken und Fragezeichen, Protokoll,
+  Hilfe und der Startbildschirm mit beiden Widgets. Als Testdaten „Thomas" und
+  die Drama Number +49 152 28817386 – es sind öffentliche Bilder. Vorhanden sind Startseite und Einrichtung;
   Protokoll und Hilfe fehlen. Dabei ist am 08.10. etwas schiefgegangen, das
   sich wiederholen wird: Der Bildschirm ging zwischen den Aufnahmen zu, und
   vier Dateien zeigten den **Sperrbildschirm mit einem privaten Foto** statt

@@ -134,6 +134,53 @@ Instead of `QUERY_ALL_PACKAGES` there are five package names under `<queries>` �
 the four remote helpers and TeamViewer's add-on. Reading the full app list needs
 special approval from Google and could not be justified here.
 
+## Who needs what
+
+Remote support has two sides, and each runs something different. This is the
+most common mix-up: **QuickSupport is the side that receives help** — whoever
+gives it needs the controlling counterpart.
+
+### On the phone that is to be helped
+
+| Program | From | What for |
+|---|---|---|
+| **HANDYHelfer** | [file from here](#installing-on-the-phone) | the button that fetches help |
+| **TeamViewer QuickSupport** | [Play Store][tv-qs] | lets the helper see the screen |
+| **TeamViewer Universal Add-On** | [Play Store][tv-addon] | lets them tap and swipe as well |
+
+Both TeamViewer packages **must come from the Play Store**. Downloaded as a
+file, Android blocks input control and the helper can only watch — the reasoning
+is further up. HANDYHelfer itself may come as a file; it does not need
+accessibility services.
+
+Nobody has to go looking: the setup assistant opens the right store pages and
+then checks for itself whether it worked.
+
+### On the helper's device
+
+| Program | From | When |
+|---|---|---|
+| **TeamViewer Remote Control** | [Play Store][tv-rc] | if you help from a phone |
+| **TeamViewer** for Linux, Windows or Mac | [teamviewer.com][tv-dl] | if you help from a computer |
+
+**HANDYHelfer does not belong on the helper's device.** It is only for the side
+that fetches help.
+
+TeamViewer is free for private family support. An account is not required but
+pays off: it lets you save the device in an address book so the nine-digit ID
+need not be asked for every session.
+
+### Someone has to go there once
+
+Enabling the accessibility service **cannot be done remotely** — Android does
+not allow it, and no app can change that. Budget twenty minutes on site for the
+initial setup. After that it runs permanently.
+
+[tv-qs]: https://play.google.com/store/apps/details?id=com.teamviewer.quicksupport.market
+[tv-addon]: https://play.google.com/store/apps/details?id=com.teamviewer.quicksupport.addon.universal
+[tv-rc]: https://play.google.com/store/apps/details?id=com.teamviewer.teamviewer.market.mobile
+[tv-dl]: https://www.teamviewer.com/en/download/
+
 ## Installing on the phone
 
 The ready-made file sits under [releases][rel]. This link always points at the
