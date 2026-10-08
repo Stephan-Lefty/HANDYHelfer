@@ -72,7 +72,20 @@ object Systemseiten {
             context.contentResolver,
             Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
         ).orEmpty()
-        return aktive.contains(art.paket, ignoreCase = true)
+
+        // Auch das Zusatzpaket zaehlt - und zwar vor allem dieses.
+        //
+        // Am 2026-10-08 am Geraet gefunden: Bei TeamViewer laeuft der Dienst
+        // nicht im Hauptprogramm, sondern im Add-On
+        // ("com.teamviewer.quicksupport.addon.universal/.TvAccessibilityService").
+        // Wer nur nach dem Hauptpaket sucht, findet ihn nie - die Liste zeigte
+        // den Schritt als offen, obwohl die Steuerung lief.
+        //
+        // Das ist kein Zufall, sondern das Muster, mit dem die grossen
+        // Anbieter durch Googles Pruefung kommen: Der heikle Dienst sitzt in
+        // einem eigenen Paket.
+        return listOfNotNull(art.paket, art.zusatzPaket)
+            .any { aktive.contains(it, ignoreCase = true) }
     }
 
     private fun starten(context: Context, absicht: Intent): Boolean = try {
