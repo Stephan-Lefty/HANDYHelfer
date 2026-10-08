@@ -138,10 +138,31 @@ die vier Fernhilfen und das TeamViewer-Zusatzpaket. Die Berechtigung, die ganze
 App-Liste zu lesen, braucht bei Google eine Sondergenehmigung und wäre für
 diesen Zweck nicht zu rechtfertigen.
 
-## Installieren
+## Auf dem Handy installieren
 
-Noch gibt es keine fertige Fassung zum Herunterladen – sie kommt, sobald die
-erste Version steht. Bis dahin selbst bauen:
+Die fertige Datei liegt bei den [Veröffentlichungen][rel]. Dieser Link zeigt
+immer auf die neueste Fassung:
+
+```
+https://github.com/Stephan-Lefty/HANDYHelfer/releases/latest/download/HANDYHelfer.apk
+```
+
+Auf dem Handy abtippen will den niemand – dafür ist der Code da. Abfotografieren,
+und der Browser lädt die Datei:
+
+<img src="assets/installieren-qr.png" alt="Strichcode, der zur neuesten HANDYHelfer-Datei führt" width="180">
+
+Beim ersten Mal fragt Android, ob dieser Browser Programme installieren darf.
+Das ist die normale Rückfrage bei allem, was nicht aus dem Play Store kommt.
+
+> **Ein Hinweis, der hier wichtig ist:** Eine so installierte App bekommt von
+> Android die Bedienungshilfen gesperrt. Für HANDYHelfer ist das egal – es
+> braucht sie nicht. Für die *Fernhilfe* ist es entscheidend, und genau deshalb
+> führt die Einrichtung dort in den Play Store. Die Begründung steht weiter oben.
+
+[rel]: https://github.com/Stephan-Lefty/HANDYHelfer/releases
+
+## Selbst bauen
 
 ```
 ./gradlew assembleDebug

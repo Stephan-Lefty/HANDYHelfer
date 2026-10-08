@@ -134,10 +134,31 @@ Instead of `QUERY_ALL_PACKAGES` there are five package names under `<queries>` �
 the four remote helpers and TeamViewer's add-on. Reading the full app list needs
 special approval from Google and could not be justified here.
 
-## Installing
+## Installing on the phone
 
-There is no ready-made build to download yet; it will come with the first
-release. Until then, build it yourself:
+The ready-made file sits under [releases][rel]. This link always points at the
+newest build:
+
+```
+https://github.com/Stephan-Lefty/HANDYHelfer/releases/latest/download/HANDYHelfer.apk
+```
+
+Nobody wants to type that on a phone — that is what the code is for. Photograph
+it and the browser fetches the file:
+
+<img src="assets/installieren-qr.png" alt="Barcode leading to the newest HANDYHelfer file" width="180">
+
+The first time, Android asks whether this browser may install programs. That is
+the normal question for anything not coming from the Play Store.
+
+> **One note that matters here:** an app installed this way has its accessibility
+> services blocked by Android. For HANDYHelfer that is irrelevant — it does not
+> need them. For the *remote helper* it is decisive, which is exactly why setup
+> sends you to the Play Store for that. The reasoning is further up.
+
+[rel]: https://github.com/Stephan-Lefty/HANDYHelfer/releases
+
+## Building it yourself
 
 ```
 ./gradlew assembleDebug
