@@ -43,6 +43,11 @@
     <string name="schritt_fernhilfe_text">Ohne RustDesk kann niemand auf den Bildschirm sehen. Es steht nicht im Play Store – das Projekt hat es dort zurückgezogen, weil Betrüger es missbraucht haben.</string>
     <string name="schritt_eingeschraenkt_titel">Eingeschränkte Einstellungen freigeben</string>
     <string name="schritt_eingeschraenkt_text">Wenn RustDesk aus dem Browser kam, sperrt Android den nächsten Schritt: Der Schalter bleibt ausgegraut. Die Freigabe steckt in der App-Info von RustDesk, hinter dem Menü. Die App kann nicht nachsehen, ob das erledigt ist – wenn der nächste Schritt klappt, war es das.</string>
+    <string name="schritt_fdroid_titel">RustDesk neu installieren, aus F-Droid</string>
+    <string name="schritt_fdroid_text">RustDesk kam aus dem Browser. Android sperrt deshalb die Eingabesteuerung – unter den Bedienungshilfen steht „Gesteuert durch eingeschränkte Einstellung“, der Schalter lässt sich nicht antippen. Auf vielen Geräten fehlt in der App-Info auch der Menüpunkt, mit dem man das aufheben könnte. Der kürzere Weg: über F-Droid installieren. Das installiert anders, und die Sperre entsteht gar nicht erst. Die alte Fassung vorher deinstallieren.</string>
+    <string name="schritt_apppause_titel">App-Pause für RustDesk abschalten</string>
+    <string name="schritt_apppause_text">Android entzieht Apps die Berechtigungen, wenn sie länger nicht benutzt werden. Bei Fernwartung ist genau das der Normalfall – und im Ernstfall steht dann ein RustDesk ohne Rechte da. Der Schalter heißt „App bei Nichtnutzung pausieren“ und steht in der App-Info.</string>
+    <string name="schritt_knopf_fdroid">F-Droid-Seite öffnen</string>
     <string name="schritt_bedienhilfe_titel">Eingabesteuerung einschalten</string>
     <string name="schritt_bedienhilfe_text">Ohne sie kann der Helfer nur zusehen und nichts antippen. Der Schalter heißt bei RustDesk meist „RustDesk Input“ und steht unter den Bedienungshilfen.</string>
     <string name="schritt_passwort_titel">Festes Passwort in RustDesk setzen</string>

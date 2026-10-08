@@ -43,6 +43,11 @@
     <string name="schritt_fernhilfe_text">Without RustDesk nobody can see the screen. It is not in the Play Store — the project withdrew it there because scammers abused it.</string>
     <string name="schritt_eingeschraenkt_titel">Allow restricted settings</string>
     <string name="schritt_eingeschraenkt_text">If RustDesk came from the browser, Android blocks the next step: the switch stays greyed out. The release is in RustDesk\'s app info, behind the menu. The app cannot check this one — if the next step works, it was done.</string>
+    <string name="schritt_fdroid_titel">Reinstall RustDesk from F-Droid</string>
+    <string name="schritt_fdroid_text">RustDesk came from the browser. Android therefore blocks input control — under accessibility it says it is controlled by a restricted setting and the switch cannot be tapped. On many devices the app info has no menu entry to lift that either. The shorter route: install via F-Droid. It installs differently and the block never arises. Uninstall the old copy first.</string>
+    <string name="schritt_apppause_titel">Turn off app pausing for RustDesk</string>
+    <string name="schritt_apppause_text">Android revokes permissions from apps that go unused for a while. For remote support that is the normal case — and in an emergency RustDesk would stand there without rights. The switch is called “Pause app activity if unused” and sits in the app info.</string>
+    <string name="schritt_knopf_fdroid">Open F-Droid page</string>
     <string name="schritt_bedienhilfe_titel">Turn on input control</string>
     <string name="schritt_bedienhilfe_text">Without it your helper can only watch, not tap. The switch is usually called “RustDesk Input” and sits under accessibility.</string>
     <string name="schritt_passwort_titel">Set a permanent password in RustDesk</string>

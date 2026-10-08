@@ -122,6 +122,37 @@ object Diagnose {
     }
 
     /**
+     * Woher ein Paket kam.
+     *
+     * Entscheidet ueber die Sperre: Android laesst bei Apps, die per Browser
+     * geladen wurden, den Schalter unter den Bedienungshilfen ausgegraut
+     * ("Gesteuert durch eingeschraenkte Einstellung"). Sitzungsbasierte
+     * Installationen - F-Droid, Play Store, Geraeteverwaltung - sind davon
+     * nicht betroffen.
+     *
+     * Am 2026-10-08 am Geraet belegt: RustDesk kam ueber
+     * `com.google.android.packageinstaller`, und "RustDesk Input" war genau
+     * deshalb nicht anfassbar.
+     */
+    fun installiertVon(context: Context, paket: String): String? = try {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            context.packageManager.getInstallSourceInfo(paket).installingPackageName
+        } else {
+            // Vor Android 11 gibt es nur diesen Weg. Er ist seit 30 als
+            // ueberholt gemeldet, aber dort die einzige Auskunft.
+            @Suppress("DEPRECATION")
+            context.packageManager.getInstallerPackageName(paket)
+        }
+    } catch (_: PackageManager.NameNotFoundException) {
+        null
+    } catch (_: IllegalArgumentException) {
+        null
+    }
+
+    /** Die Kennung des Paketinstallierers - der Weg ueber den Browser. */
+    const val BROWSER_INSTALLIERER = "com.google.android.packageinstaller"
+
+    /**
      * Ob ein Paket installiert ist.
      *
      * Ab Android 11 nur sichtbar, wenn es im Manifest unter `<queries>` steht -

@@ -57,6 +57,8 @@ class AssistentActivity : AppCompatActivity() {
     private fun stand() = Stand(
         fernhilfeInstalliert = Fernhilfe.installiert(this),
         bedienhilfeAktiv = Systemseiten.bedienhilfeAktiv(this),
+        fernhilfeAusBrowser = Diagnose.installiertVon(this, Diagnose.FERNHILFE_PAKET)
+            == Diagnose.BROWSER_INSTALLIERER,
         helferDa = Helfer.eingerichtet(this),
         anrufErlaubt = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
             == PackageManager.PERMISSION_GRANTED,
@@ -105,6 +107,8 @@ class AssistentActivity : AppCompatActivity() {
     private fun titel(art: SchrittArt) = when (art) {
         SchrittArt.FERNHILFE_INSTALLIEREN -> R.string.schritt_fernhilfe_titel
         SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN -> R.string.schritt_eingeschraenkt_titel
+        SchrittArt.NEU_INSTALLIEREN_AUS_FDROID -> R.string.schritt_fdroid_titel
+        SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_apppause_titel
         SchrittArt.BEDIENHILFE -> R.string.schritt_bedienhilfe_titel
         SchrittArt.FESTES_PASSWORT -> R.string.schritt_passwort_titel
         SchrittArt.KARTE_FUER_ANRUFE -> R.string.schritt_karte_titel
@@ -117,6 +121,8 @@ class AssistentActivity : AppCompatActivity() {
     private fun erklaerung(art: SchrittArt) = when (art) {
         SchrittArt.FERNHILFE_INSTALLIEREN -> R.string.schritt_fernhilfe_text
         SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN -> R.string.schritt_eingeschraenkt_text
+        SchrittArt.NEU_INSTALLIEREN_AUS_FDROID -> R.string.schritt_fdroid_text
+        SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_apppause_text
         SchrittArt.BEDIENHILFE -> R.string.schritt_bedienhilfe_text
         SchrittArt.FESTES_PASSWORT -> R.string.schritt_passwort_text
         SchrittArt.KARTE_FUER_ANRUFE -> R.string.schritt_karte_text
@@ -129,6 +135,8 @@ class AssistentActivity : AppCompatActivity() {
     private fun knopf(art: SchrittArt) = when (art) {
         SchrittArt.FERNHILFE_INSTALLIEREN -> R.string.schritt_knopf_seite
         SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN -> R.string.schritt_knopf_appinfo
+        SchrittArt.NEU_INSTALLIEREN_AUS_FDROID -> R.string.schritt_knopf_fdroid
+        SchrittArt.KEINE_APP_PAUSE -> R.string.schritt_knopf_appinfo
         SchrittArt.BEDIENHILFE -> R.string.schritt_knopf_bedienungshilfen
         SchrittArt.FESTES_PASSWORT -> R.string.schritt_knopf_rustdesk
         SchrittArt.KARTE_FUER_ANRUFE -> R.string.schritt_knopf_karte
@@ -141,6 +149,8 @@ class AssistentActivity : AppCompatActivity() {
         val geklappt = when (art) {
             SchrittArt.FERNHILFE_INSTALLIEREN -> Systemseiten.fernhilfeHolen(this)
             SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN -> Systemseiten.appInfoFernhilfe(this)
+            SchrittArt.NEU_INSTALLIEREN_AUS_FDROID -> Systemseiten.fdroidSeite(this)
+            SchrittArt.KEINE_APP_PAUSE -> Systemseiten.appInfoFernhilfe(this)
             SchrittArt.BEDIENHILFE -> Systemseiten.bedienungshilfen(this)
             SchrittArt.FESTES_PASSWORT -> Fernhilfe.oeffnen(this)
             SchrittArt.KARTE_FUER_ANRUFE -> karteWaehlen()

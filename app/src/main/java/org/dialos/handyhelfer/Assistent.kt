@@ -8,6 +8,7 @@ package org.dialos.handyhelfer
 data class Stand(
     val fernhilfeInstalliert: Boolean,
     val bedienhilfeAktiv: Boolean,
+    val fernhilfeAusBrowser: Boolean,
     val helferDa: Boolean,
     val anrufErlaubt: Boolean,
     val mehrereKarten: Boolean,
@@ -19,6 +20,8 @@ data class Stand(
 enum class SchrittArt {
     FERNHILFE_INSTALLIEREN,
     EINGESCHRAENKTE_EINSTELLUNGEN,
+    NEU_INSTALLIEREN_AUS_FDROID,
+    KEINE_APP_PAUSE,
     BEDIENHILFE,
     FESTES_PASSWORT,
     KARTE_FUER_ANRUFE,
@@ -69,11 +72,21 @@ object Assistent {
             // Browser geladenen APK ist der Schalter ausgegraut, und wer das
             // nicht weiss, sucht an der falschen Stelle.
             if (!stand.bedienhilfeAktiv) {
-                liste += Schritt(
-                    SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN,
-                    erledigt = false,
-                    pruefbar = false,
-                )
+                // Kam die App aus dem Browser, ist der Schalter gesperrt und
+                // laesst sich auf vielen Geraeten gar nicht freigeben - in der
+                // App-Info fehlt dort das Menue dafuer. Der ehrliche Rat ist
+                // dann nicht "such den Schalter", sondern "installier sie neu
+                // aus F-Droid": Das installiert sitzungsbasiert, und die
+                // Sperre greift gar nicht erst.
+                if (stand.fernhilfeAusBrowser) {
+                    liste += Schritt(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID, erledigt = false)
+                } else {
+                    liste += Schritt(
+                        SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN,
+                        erledigt = false,
+                        pruefbar = false,
+                    )
+                }
             }
             liste += Schritt(SchrittArt.BEDIENHILFE, stand.bedienhilfeAktiv)
 
@@ -86,6 +99,16 @@ object Assistent {
                 erledigt = false,
                 pruefbar = false,
             )
+
+            // Eine Fernwartungs-App liegt monatelang ungenutzt herum - genau
+            // der Fall, fuer den Android die Rechte wieder einzieht. Im
+            // Ernstfall stuende dann ein RustDesk ohne Berechtigungen da.
+            //
+            // Unpruefbar: `isAutoRevokeWhitelisted` beantwortet die Frage fuer
+            // *fremde* Pakete nicht. Am 2026-10-08 ausprobiert - am Geraet
+            // stand der Schalter sichtbar auf an, die Abfrage meldete trotzdem
+            // nichts. Lieber ein Fragezeichen als ein verschwiegenes Problem.
+            liste += Schritt(SchrittArt.KEINE_APP_PAUSE, erledigt = false, pruefbar = false)
         }
 
         // Nur wenn mehr als eine Karte steckt und keine als Standard gilt:

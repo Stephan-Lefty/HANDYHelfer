@@ -40,6 +40,21 @@ object Systemseiten {
         ),
     )
 
+    /**
+     * Die F-Droid-Seite von RustDesk.
+     *
+     * Der empfohlene Weg, wenn die Browser-Installation die Eingabesteuerung
+     * sperrt: F-Droid installiert sitzungsbasiert, und die eingeschraenkten
+     * Einstellungen greifen dann nicht.
+     */
+    fun fdroidSeite(context: Context): Boolean = starten(
+        context,
+        Intent(
+            Intent.ACTION_VIEW,
+            "https://f-droid.org/packages/${Diagnose.FERNHILFE_PAKET}/".toUri(),
+        ),
+    )
+
     /** Die Bezugsquelle fuer RustDesk - nicht der Play Store, dort fehlt es. */
     fun fernhilfeHolen(context: Context): Boolean =
         starten(context, Intent(Intent.ACTION_VIEW, Fernhilfe.BEZUGSQUELLE.toUri()))

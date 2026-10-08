@@ -10,6 +10,7 @@ class AssistentTest {
     private fun leer() = Stand(
         fernhilfeInstalliert = false,
         bedienhilfeAktiv = false,
+        fernhilfeAusBrowser = false,
         helferDa = false,
         anrufErlaubt = false,
         mehrereKarten = false,
@@ -21,6 +22,7 @@ class AssistentTest {
     private fun fertig() = Stand(
         fernhilfeInstalliert = true,
         bedienhilfeAktiv = true,
+        fernhilfeAusBrowser = false,
         helferDa = true,
         anrufErlaubt = true,
         mehrereKarten = false,
@@ -108,6 +110,56 @@ class AssistentTest {
     fun `fehlt der Helfer oder die Anruferlaubnis, ist nichts fertig`() {
         assertFalse(Assistent.fertig(fertig().copy(helferDa = false)))
         assertFalse(Assistent.fertig(fertig().copy(anrufErlaubt = false)))
+    }
+
+    @Test
+    fun `aus dem Browser installiert fuehrt zu F-Droid statt zur App-Info`() {
+        // Am 2026-10-08 am Geraet belegt: Bei Browser-Installation steht der
+        // Schalter auf "Gesteuert durch eingeschraenkte Einstellung" und laesst
+        // sich nicht antippen - und in der App-Info fehlt der Menuepunkt, mit
+        // dem man das aufheben koennte. Dann ist Neuinstallieren der kuerzere
+        // Weg, nicht das Suchen nach einem Schalter, den es nicht gibt.
+        val ausBrowser = leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = true)
+        assertTrue(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in arten(ausBrowser))
+        assertFalse(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN in arten(ausBrowser))
+    }
+
+    @Test
+    fun `anders installiert bleibt es beim Hinweis auf die App-Info`() {
+        val anders = leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = false)
+        assertTrue(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN in arten(anders))
+        assertFalse(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in arten(anders))
+    }
+
+    @Test
+    fun `laeuft die Bedienhilfe, ist die Herkunft gleichgueltig`() {
+        // Dann ist die Frage beantwortet, egal wie sie beantwortet wurde.
+        val laeuft = leer().copy(
+            fernhilfeInstalliert = true, fernhilfeAusBrowser = true, bedienhilfeAktiv = true,
+        )
+        assertFalse(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in arten(laeuft))
+        assertFalse(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN in arten(laeuft))
+    }
+
+    @Test
+    fun `die App-Pause steht, sobald die Fernhilfe da ist`() {
+        assertFalse(SchrittArt.KEINE_APP_PAUSE in arten(leer()))
+        assertTrue(SchrittArt.KEINE_APP_PAUSE in arten(leer().copy(fernhilfeInstalliert = true)))
+    }
+
+    @Test
+    fun `die App-Pause gilt als unpruefbar`() {
+        // isAutoRevokeWhitelisted beantwortet die Frage fuer fremde Pakete
+        // nicht - am 2026-10-08 ausprobiert. Ein Fragezeichen ist ehrlicher
+        // als ein Haken, der nichts belegt.
+        val schritt = Assistent.schritte(leer().copy(fernhilfeInstalliert = true))
+            .single { it.art == SchrittArt.KEINE_APP_PAUSE }
+        assertFalse(schritt.pruefbar)
+    }
+
+    @Test
+    fun `die unpruefbare App-Pause verhindert fertig nicht`() {
+        assertTrue(Assistent.fertig(fertig()))
     }
 
     @Test
