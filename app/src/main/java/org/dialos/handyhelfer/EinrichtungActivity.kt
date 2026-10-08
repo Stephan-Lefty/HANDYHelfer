@@ -136,17 +136,7 @@ class EinrichtungActivity : AppCompatActivity() {
             kartenerlaubnis.launch(Manifest.permission.READ_PHONE_STATE)
             return
         }
-        val karten = Karten.verfuegbare(this)
-        if (karten.isEmpty()) return
-
-        val namen = karten.map { Karten.name(this, it) }.toTypedArray()
-        AlertDialog.Builder(this)
-            .setTitle(R.string.karte_label)
-            .setItems(namen) { _, gewaehlt ->
-                Karten.speichern(this, karten[gewaehlt])
-                karteAnzeigen()
-            }
-            .show()
+        Karten.auswahlZeigen(this) { karteAnzeigen() }
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -7,6 +7,8 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.telecom.PhoneAccountHandle
 import android.telecom.TelecomManager
+import android.telephony.SubscriptionInfo
+import android.telephony.SubscriptionManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 
@@ -81,21 +83,71 @@ object Karten {
     }
 
     /**
-     * Der Name, den das System der Karte gibt - "SIM 1", "eSIM", der
-     * Anbietername.
+     * Der Name, den das System der Karte gibt - "1&1", "YELLLOW", "eSIM".
      *
-     * Die Kennung (`handle.id`) waere eine technische Zeichenkette und als
-     * Auswahl unbrauchbar: Wer zwischen zwei Zeilen Kauderwelsch waehlen soll,
-     * waehlt gar nicht.
+     * **Am 2026-10-08 am Geraet gefunden:** Das Label der Telefonkonten ist
+     * leer, und die Auswahl zeigte daraufhin "4" und "3" - die blanken
+     * Kennungen. Genau das soll sie nicht: Wer zwischen zwei Zeilen
+     * Kauderwelsch waehlen soll, waehlt gar nicht.
+     *
+     * Die lesbaren Namen stehen in den Vertragsdaten, nicht in den
+     * Telefonkonten. Bei Telephony-Konten ist `handle.id` die Vertragskennung,
+     * darueber findet sich der Anzeigename.
      */
     fun name(context: Context, karte: PhoneAccountHandle): String {
-        val konto = try {
-            telecom(context).getPhoneAccount(karte)
+        val label = try {
+            telecom(context).getPhoneAccount(karte)?.label?.toString()
         } catch (_: SecurityException) {
             null
         }
-        val beschriftung = konto?.label?.toString()?.trim().orEmpty()
-        return beschriftung.ifEmpty { karte.id }
+
+        val vertrag = vertragZu(context, karte)
+        return besterName(
+            label = label,
+            anzeigename = vertrag?.displayName?.toString(),
+            anbieter = vertrag?.carrierName?.toString(),
+            platz = vertrag?.simSlotIndex ?: -1,
+            kennung = karte.id,
+        )
+    }
+
+    private fun vertragZu(context: Context, karte: PhoneAccountHandle): SubscriptionInfo? {
+        if (!darfLesen(context)) return null
+        val kennung = karte.id.toIntOrNull() ?: return null
+        val verwaltung = context.getSystemService(SubscriptionManager::class.java) ?: return null
+        return try {
+            verwaltung.activeSubscriptionInfoList?.firstOrNull { it.subscriptionId == kennung }
+        } catch (_: SecurityException) {
+            null
+        }
+    }
+
+    /**
+     * Welcher Name genommen wird, und in welcher Reihenfolge.
+     *
+     * Ohne Android, damit die Faelle in `KartenNameTest` ohne Geraet laufen -
+     * zwei SIM-Karten mit verschiedenen Anbietern sind sonst nur schwer
+     * herzustellen.
+     *
+     * Der Anbietername kommt vor der Position, aber nach dem Anzeigenamen:
+     * Auf dem Testgeraet meldete eine Karte `displayName=1&1` und
+     * `carrierName=3` - der Anzeigename war der brauchbare, der Anbietername
+     * eine blanke Ziffer. Reine Zahlen gelten deshalb als unbrauchbar.
+     */
+    fun besterName(
+        label: String?,
+        anzeigename: String?,
+        anbieter: String?,
+        platz: Int,
+        kennung: String,
+    ): String {
+        for (kandidat in listOf(label, anzeigename, anbieter)) {
+            val sauber = kandidat?.trim().orEmpty()
+            if (sauber.isNotEmpty() && !sauber.all { it.isDigit() }) return sauber
+        }
+        // Kein Name zu holen: wenigstens der Steckplatz, menschlich gezaehlt.
+        if (platz >= 0) return "SIM ${platz + 1}"
+        return kennung
     }
 
     /** Der Name der hinterlegten Karte, oder `null`, wenn keine feststeht. */
@@ -106,6 +158,33 @@ object Karten {
         context.getSharedPreferences(DATEI, Context.MODE_PRIVATE).edit {
             putString(KARTE, karte.id)
         }
+    }
+
+    /**
+     * Zeigt die Auswahl der Karten.
+     *
+     * Bewusst hier und nicht in den Activities: Derselbe Dialog stand am
+     * 2026-10-08 an zwei Stellen, und beim Umstellen auf lesbare Namen blieb
+     * eine davon auf den blanken Kennungen stehen.
+     *
+     * Gibt `false` zurueck, wenn es nichts zu waehlen gibt.
+     */
+    fun auswahlZeigen(
+        activity: android.app.Activity,
+        danach: () -> Unit,
+    ): Boolean {
+        val karten = verfuegbare(activity)
+        if (karten.isEmpty()) return false
+
+        val namen = karten.map { name(activity, it) }.toTypedArray()
+        androidx.appcompat.app.AlertDialog.Builder(activity)
+            .setTitle(R.string.karte_label)
+            .setItems(namen) { _, gewaehlt ->
+                speichern(activity, karten[gewaehlt])
+                danach()
+            }
+            .show()
+        return true
     }
 
     /**

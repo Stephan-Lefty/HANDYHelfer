@@ -98,7 +98,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
-                android:text="@string/einrichtung" />
+                android:text="@string/assistent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/knopf_protokoll"

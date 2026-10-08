@@ -175,18 +175,7 @@ class AssistentActivity : AppCompatActivity() {
             kartenerlaubnis.launch(Manifest.permission.READ_PHONE_STATE)
             return true
         }
-        val karten = Karten.verfuegbare(this)
-        if (karten.isEmpty()) return false
-
-        val namen = karten.map { it.id }.toTypedArray()
-        androidx.appcompat.app.AlertDialog.Builder(this)
-            .setTitle(R.string.schritt_karte_titel)
-            .setItems(namen) { _, gewaehlt ->
-                Karten.speichern(this, karten[gewaehlt])
-                zeichnen()
-            }
-            .show()
-        return true
+        return Karten.auswahlZeigen(this) { zeichnen() }
     }
 
     override fun onSupportNavigateUp(): Boolean {

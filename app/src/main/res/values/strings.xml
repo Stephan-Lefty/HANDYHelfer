@@ -44,7 +44,7 @@
     <string name="schritt_eingeschraenkt_titel">Eingeschränkte Einstellungen freigeben</string>
     <string name="schritt_eingeschraenkt_text">Wenn RustDesk aus dem Browser kam, sperrt Android den nächsten Schritt: Der Schalter bleibt ausgegraut. Die Freigabe steckt in der App-Info von RustDesk, hinter dem Menü. Die App kann nicht nachsehen, ob das erledigt ist – wenn der nächste Schritt klappt, war es das.</string>
     <string name="schritt_bedienhilfe_titel">Eingabesteuerung einschalten</string>
-    <string name="schritt_bedienhilfe_text">Ohne sie kann der Helfer nur zusehen und nichts antippen. Der Schalter heißt bei RustDesk meist „RustDesk Input" und steht unter den Bedienungshilfen.</string>
+    <string name="schritt_bedienhilfe_text">Ohne sie kann der Helfer nur zusehen und nichts antippen. Der Schalter heißt bei RustDesk meist „RustDesk Input“ und steht unter den Bedienungshilfen.</string>
     <string name="schritt_passwort_titel">Festes Passwort in RustDesk setzen</string>
     <string name="schritt_passwort_text">Ohne das muss bei jeder Sitzung ein wechselndes Einmalpasswort vorgelesen werden – genau daran scheitert Hilfe am Telefon. Mit festem Passwort kennt der Helfer es und braucht nichts zu fragen. Die App kann nicht nachsehen, ob es gesetzt ist. Zu finden in RustDesk unter den Einstellungen zur Sicherheit.</string>
     <string name="schritt_karte_titel">Karte für Anrufe festlegen</string>

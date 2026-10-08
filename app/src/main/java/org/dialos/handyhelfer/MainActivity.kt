@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         bindung.knopfHilfe.setOnClickListener { hilfeHolen() }
         bindung.knopfBildschirm.setOnClickListener { bildschirmFreigeben() }
         bindung.knopfEinrichtung.setOnClickListener {
-            startActivity(Intent(this, EinrichtungActivity::class.java))
+            startActivity(Intent(this, AssistentActivity::class.java))
         }
         bindung.knopfProtokoll.setOnClickListener {
             startActivity(Intent(this, ProtokollActivity::class.java))
@@ -56,8 +56,11 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onResume() {
         super.onResume()
+        // Beim ersten Start in den Assistenten, nicht in die Einrichtung:
+        // Wer die App zum ersten Mal oeffnet, ist der Helfer vor Ort - und
+        // der braucht die ganze Liste, nicht nur das Namensfeld.
         if (!Helfer.eingerichtet(this)) {
-            startActivity(Intent(this, EinrichtungActivity::class.java))
+            startActivity(Intent(this, AssistentActivity::class.java))
             return
         }
         anzeigen()
