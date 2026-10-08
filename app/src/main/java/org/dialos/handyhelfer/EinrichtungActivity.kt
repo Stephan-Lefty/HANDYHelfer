@@ -1,7 +1,9 @@
 package org.dialos.handyhelfer
 
+import android.Manifest
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.dialos.handyhelfer.databinding.ActivityEinrichtungBinding
@@ -18,6 +20,13 @@ class EinrichtungActivity : AppCompatActivity() {
 
     private lateinit var bindung: ActivityEinrichtungBinding
 
+    private val kartenerlaubnis = registerForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { erteilt ->
+        if (erteilt) karteWaehlen()
+        karteAnzeigen()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindung = ActivityEinrichtungBinding.inflate(layoutInflater)
@@ -29,10 +38,12 @@ class EinrichtungActivity : AppCompatActivity() {
             bindung.feldName.setText(it.name)
             bindung.feldNummer.setText(it.nummer)
         }
+        karteAnzeigen()
 
         bindung.knopfSpeichern.setOnClickListener { speichern() }
         bindung.knopfStartbildschirm.setOnClickListener { aufStartbildschirm() }
         bindung.knopfSymbol.setOnClickListener { symbolDazu() }
+        bindung.knopfKarte.setOnClickListener { karteWaehlen() }
     }
 
     private fun speichern(schliessen: Boolean = true): Boolean {
@@ -98,6 +109,44 @@ class EinrichtungActivity : AppCompatActivity() {
                 .setPositiveButton(android.R.string.ok, null)
                 .show()
         }
+    }
+
+    /**
+     * Die Karte wird einmal gewaehlt und steht dann fuer alle kuenftigen
+     * Anrufe fest.
+     *
+     * Sichtbar nur auf Geraeten mit zwei Karten - SIM plus eSIM zaehlt dabei
+     * als zwei. Ohne die Wahl fragt Android bei jedem Anruf zurueck, und der
+     * grosse Knopf fuehrt in einen Auswahldialog statt zum Klingeln.
+     */
+    private fun karteAnzeigen() {
+        val mehrere = Karten.mehrereKarten(this)
+        val fragenLohnt = mehrere || !Karten.darfLesen(this) && Karten.gespeicherte(this) == null
+
+        bindung.bereichKarte.visibility =
+            if (mehrere) android.view.View.VISIBLE else android.view.View.GONE
+        if (!fragenLohnt) return
+
+        bindung.knopfKarte.text = Karten.nameDerGespeicherten(this)
+            ?: getString(R.string.karte_noch_keine)
+    }
+
+    private fun karteWaehlen() {
+        if (!Karten.darfLesen(this)) {
+            kartenerlaubnis.launch(Manifest.permission.READ_PHONE_STATE)
+            return
+        }
+        val karten = Karten.verfuegbare(this)
+        if (karten.isEmpty()) return
+
+        val namen = karten.map { Karten.name(this, it) }.toTypedArray()
+        AlertDialog.Builder(this)
+            .setTitle(R.string.karte_label)
+            .setItems(namen) { _, gewaehlt ->
+                Karten.speichern(this, karten[gewaehlt])
+                karteAnzeigen()
+            }
+            .show()
     }
 
     override fun onSupportNavigateUp(): Boolean {

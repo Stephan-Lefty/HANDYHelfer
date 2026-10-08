@@ -22,6 +22,15 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!--
+      READ_PHONE_STATE ist freiwillig und nur fuer Geraete mit zwei Karten da.
+      Ohne sie laeuft alles wie zuvor - mit einer Karte voellig unauffaellig,
+      mit zweien mit Androids Rueckfrage "welche Karte?". Am 2026-10-08 am
+      Geraet gesehen: Der grosse Knopf fuehrte in einen Auswahldialog statt
+      zum Klingeln.
+    -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!--
       Ohne Telefonie faellt der Hauptknopf aus - er ruft an. Die App bleibt auf
       einem Tablet ohne SIM trotzdem brauchbar (Zustandsbericht, Fernhilfe
       oeffnen), deshalb required="false" statt eines Ausschlusses im Store.
@@ -72,6 +81,12 @@
             android:name=".EinrichtungActivity"
             android:exported="false"
             android:label="@string/einrichtung"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".AssistentActivity"
+            android:exported="false"
+            android:label="@string/assistent"
             android:parentActivityName=".MainActivity" />
 
         <activity

@@ -60,6 +60,45 @@
             android:textSize="21sp"
             android:autofillHints="phone" />
 
+        <!--
+          Nur sichtbar, wenn wirklich zwei Karten stecken. Auf einem Geraet
+          mit einer Karte waere die Frage sinnlos und die Einrichtung nur
+          laenger.
+        -->
+        <LinearLayout
+            android:id="@+id/bereich_karte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/karte_label"
+                android:textColor="@color/grau_dunkel"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="@string/karte_erklaerung"
+                android:textColor="@color/grau"
+                android:textSize="15sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/knopf_karte"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="8dp"
+                android:textSize="18sp"
+                app:cornerRadius="16dp" />
+        </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/knopf_speichern"
             android:layout_width="match_parent"

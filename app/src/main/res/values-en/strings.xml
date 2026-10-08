@@ -27,10 +27,45 @@
     <string name="name_hinweis">for example: Thomas</string>
     <string name="nummer_label">Phone number</string>
     <string name="nummer_hinweis">for example: +49 170 1234567</string>
+    <string name="karte_label">Card for calls</string>
+    <string name="karte_erklaerung">This phone has two cards. Choose once — after that it is fixed and there are no more questions.</string>
+    <string name="karte_noch_keine">Not chosen yet</string>
     <string name="speichern">Save</string>
     <string name="nummer_unbrauchbar">This number cannot be called. Please check it again.</string>
     <string name="name_fehlt">Please enter a name.</string>
     <string name="gespeichert">Saved.</string>
+
+    <!-- Einrichtungs-Assistent -->
+    <string name="assistent">Check setup</string>
+    <string name="assistent_kopf">This list checks itself. A tick only appears where the app really looked. Each button opens the page where that step happens — do not go hunting for it.</string>
+    <string name="assistent_fertig">Everything is in place. You can open this list again later if something stops working — it will show what changed.</string>
+    <string name="schritt_fernhilfe_titel">Install RustDesk</string>
+    <string name="schritt_fernhilfe_text">Without RustDesk nobody can see the screen. It is not in the Play Store — the project withdrew it there because scammers abused it.</string>
+    <string name="schritt_eingeschraenkt_titel">Allow restricted settings</string>
+    <string name="schritt_eingeschraenkt_text">If RustDesk came from the browser, Android blocks the next step: the switch stays greyed out. The release is in RustDesk\'s app info, behind the menu. The app cannot check this one — if the next step works, it was done.</string>
+    <string name="schritt_bedienhilfe_titel">Turn on input control</string>
+    <string name="schritt_bedienhilfe_text">Without it your helper can only watch, not tap. The switch is usually called “RustDesk Input” and sits under accessibility.</string>
+    <string name="schritt_passwort_titel">Set a permanent password in RustDesk</string>
+    <string name="schritt_passwort_text">Without one, a changing one-time password has to be read out for every session — which is exactly where help over the phone breaks down. With a permanent password your helper knows it and need not ask. The app cannot check whether it is set. Look under RustDesk\'s security settings.</string>
+    <string name="schritt_karte_titel">Choose the card for calls</string>
+    <string name="schritt_karte_text">This phone has two SIM cards and neither is the default. Android therefore asks which one to use for every call — the big button then leads into a chooser instead of ringing.</string>
+    <string name="schritt_knopf_rustdesk">Open RustDesk</string>
+    <string name="schritt_knopf_karte">Choose card</string>
+    <string name="schritt_helfer_titel">Choose who may help</string>
+    <string name="schritt_helfer_text">Exactly one person, with name and number. Without it the big button does nothing.</string>
+    <string name="schritt_anrufen_titel">Allow calling</string>
+    <string name="schritt_anrufen_text">So the button really dials instead of just opening the phone app with the number.</string>
+    <string name="schritt_balken_titel">Button on the home screen</string>
+    <string name="schritt_balken_text">The wide bar with the helper\'s name. It is the route that actually gets used later.</string>
+    <string name="schritt_symbol_titel">Add the small symbol</string>
+    <string name="schritt_symbol_text">Square, for the spot next to it. Optional.</string>
+    <string name="schritt_knopf_seite">Open page</string>
+    <string name="schritt_knopf_appinfo">Open app info</string>
+    <string name="schritt_knopf_bedienungshilfen">Open accessibility</string>
+    <string name="schritt_knopf_eintragen">Enter</string>
+    <string name="schritt_knopf_erlauben">Allow</string>
+    <string name="schritt_knopf_ablegen">Place</string>
+    <string name="schritt_ging_nicht">This page does not exist on this device. Then only the manual route through settings helps.</string>
 
     <!-- Log -->
     <string name="protokoll">Log</string>

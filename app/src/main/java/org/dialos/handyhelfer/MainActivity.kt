@@ -9,7 +9,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import org.dialos.handyhelfer.databinding.ActivityMainBinding
 import org.dialos.handyhelfer.databinding.ZeileBefundBinding
 
@@ -109,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun anrufen() {
         val helfer = Helfer.lesen(this) ?: return
-        startActivity(Intent(Intent.ACTION_CALL, "tel:${helfer.nummer}".toUri()))
+        startActivity(Karten.anruf(this, helfer.nummer, waehlen = true))
     }
 
     /**
@@ -119,7 +118,7 @@ class MainActivity : AppCompatActivity() {
     private fun waehlerOeffnen() {
         val helfer = Helfer.lesen(this) ?: return
         Toast.makeText(this, R.string.anruf_nicht_erlaubt, Toast.LENGTH_LONG).show()
-        startActivity(Intent(Intent.ACTION_DIAL, "tel:${helfer.nummer}".toUri()))
+        startActivity(Karten.anruf(this, helfer.nummer, waehlen = false))
     }
 
     private fun bildschirmFreigeben() {

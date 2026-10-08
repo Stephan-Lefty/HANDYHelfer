@@ -27,10 +27,45 @@
     <string name="name_hinweis">zum Beispiel: Thomas</string>
     <string name="nummer_label">Telefonnummer</string>
     <string name="nummer_hinweis">zum Beispiel: +49 170 1234567</string>
+    <string name="karte_label">Karte für Anrufe</string>
+    <string name="karte_erklaerung">In diesem Handy stecken zwei Karten. Einmal wählen – danach steht sie fest, und es kommt keine Rückfrage mehr.</string>
+    <string name="karte_noch_keine">Noch nicht gewählt</string>
     <string name="speichern">Speichern</string>
     <string name="nummer_unbrauchbar">Diese Nummer kann nicht angerufen werden. Bitte noch einmal ansehen.</string>
     <string name="name_fehlt">Bitte einen Namen eintragen.</string>
     <string name="gespeichert">Gespeichert.</string>
+
+    <!-- Einrichtungs-Assistent -->
+    <string name="assistent">Einrichtung prüfen</string>
+    <string name="assistent_kopf">Diese Liste prüft sich selbst. Ein Haken steht nur da, wo die App wirklich nachgesehen hat. Jeder Knopf öffnet die Seite, auf der der Schritt stattfindet – such nicht selbst danach.</string>
+    <string name="assistent_fertig">Alles sitzt. Diese Liste lässt sich später wieder aufrufen, wenn etwas nicht mehr geht – dann steht hier, was sich geändert hat.</string>
+    <string name="schritt_fernhilfe_titel">RustDesk installieren</string>
+    <string name="schritt_fernhilfe_text">Ohne RustDesk kann niemand auf den Bildschirm sehen. Es steht nicht im Play Store – das Projekt hat es dort zurückgezogen, weil Betrüger es missbraucht haben.</string>
+    <string name="schritt_eingeschraenkt_titel">Eingeschränkte Einstellungen freigeben</string>
+    <string name="schritt_eingeschraenkt_text">Wenn RustDesk aus dem Browser kam, sperrt Android den nächsten Schritt: Der Schalter bleibt ausgegraut. Die Freigabe steckt in der App-Info von RustDesk, hinter dem Menü. Die App kann nicht nachsehen, ob das erledigt ist – wenn der nächste Schritt klappt, war es das.</string>
+    <string name="schritt_bedienhilfe_titel">Eingabesteuerung einschalten</string>
+    <string name="schritt_bedienhilfe_text">Ohne sie kann der Helfer nur zusehen und nichts antippen. Der Schalter heißt bei RustDesk meist „RustDesk Input" und steht unter den Bedienungshilfen.</string>
+    <string name="schritt_passwort_titel">Festes Passwort in RustDesk setzen</string>
+    <string name="schritt_passwort_text">Ohne das muss bei jeder Sitzung ein wechselndes Einmalpasswort vorgelesen werden – genau daran scheitert Hilfe am Telefon. Mit festem Passwort kennt der Helfer es und braucht nichts zu fragen. Die App kann nicht nachsehen, ob es gesetzt ist. Zu finden in RustDesk unter den Einstellungen zur Sicherheit.</string>
+    <string name="schritt_karte_titel">Karte für Anrufe festlegen</string>
+    <string name="schritt_karte_text">In diesem Handy stecken zwei Karten, und keine gilt als Standard. Android fragt deshalb bei jedem Anruf zurück, mit welcher gewählt werden soll – der große Knopf führt dann in einen Auswahldialog statt zum Klingeln.</string>
+    <string name="schritt_knopf_rustdesk">RustDesk öffnen</string>
+    <string name="schritt_knopf_karte">Karte wählen</string>
+    <string name="schritt_helfer_titel">Festlegen, wer helfen darf</string>
+    <string name="schritt_helfer_text">Genau eine Person, mit Namen und Rufnummer. Ohne sie tut der große Knopf nichts.</string>
+    <string name="schritt_anrufen_titel">Anrufen erlauben</string>
+    <string name="schritt_anrufen_text">Damit der Knopf wirklich wählt, statt nur das Telefon mit der Nummer zu öffnen.</string>
+    <string name="schritt_balken_titel">Knopf auf den Startbildschirm</string>
+    <string name="schritt_balken_text">Der breite Balken mit dem Namen des Helfers. Er ist der Weg, den die Betroffene später wirklich nimmt.</string>
+    <string name="schritt_symbol_titel">Kleines Symbol dazu</string>
+    <string name="schritt_symbol_text">Quadratisch, für den Platz daneben. Muss nicht sein.</string>
+    <string name="schritt_knopf_seite">Seite öffnen</string>
+    <string name="schritt_knopf_appinfo">App-Info öffnen</string>
+    <string name="schritt_knopf_bedienungshilfen">Bedienungshilfen öffnen</string>
+    <string name="schritt_knopf_eintragen">Eintragen</string>
+    <string name="schritt_knopf_erlauben">Erlauben</string>
+    <string name="schritt_knopf_ablegen">Ablegen</string>
+    <string name="schritt_ging_nicht">Diese Seite gibt es auf dem Gerät nicht. Dann hilft nur der Weg über die Einstellungen von Hand.</string>
 
     <!-- Protokoll -->
     <string name="protokoll">Protokoll</string>
