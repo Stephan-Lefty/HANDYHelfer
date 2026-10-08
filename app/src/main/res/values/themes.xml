@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      Mit ActionBar, nicht ohne. Die Unterseiten (Einrichtung, Protokoll,
+      Hilfe) brauchen einen sichtbaren Pfeil zurueck - die Zielgruppe sucht
+      ihn oben links und nicht in der Systemgeste. Am 2026-10-08 am Geraet
+      gesehen: Mit NoActionBar lief setDisplayHomeAsUpEnabled() ins Leere und
+      es gab gar keinen Weg zurueck ausser der Systemtaste.
+    -->
+    <style name="Theme.HandyHelfer" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/blau</item>
+        <item name="colorOnPrimary">@color/weiss</item>
+        <item name="colorSecondary">@color/blau_tief</item>
+        <item name="android:colorBackground">@color/grau_papier</item>
+        <item name="actionBarStyle">@style/Widget.HandyHelfer.ActionBar</item>
+        <item name="actionBarTheme">@style/ThemeOverlay.HandyHelfer.ActionBar</item>
+    </style>
+
+    <!--
+      Material3 faerbt die Titelleiste sonst in seinem eigenen Violett. Sie
+      traegt die Leitfarbe, damit die App zu MailBurg, POSTKutsche und den
+      uebrigen passt (assets/farben.md).
+
+      Der Weg ueber `actionBarStyle` mit `background` ist der entscheidende:
+      Ein blosses ThemeOverlay auf `colorSurface` reicht nicht - am 2026-10-08
+      ausprobiert, danach stand weisse Schrift auf rosa Grund und war
+      schlechter lesbar als vorher.
+    -->
+    <style name="Widget.HandyHelfer.ActionBar" parent="Widget.Material3.ActionBar.Solid">
+        <item name="background">@color/blau</item>
+        <item name="titleTextStyle">@style/TextAppearance.HandyHelfer.ActionBar</item>
+    </style>
+
+    <style name="TextAppearance.HandyHelfer.ActionBar" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/weiss</item>
+    </style>
+
+    <!-- Faerbt den Zurueck-Pfeil, der nicht aus dem titleTextStyle kommt. -->
+    <style name="ThemeOverlay.HandyHelfer.ActionBar" parent="ThemeOverlay.Material3.Dark.ActionBar">
+        <item name="colorControlNormal">@color/weiss</item>
+    </style>
+</resources>

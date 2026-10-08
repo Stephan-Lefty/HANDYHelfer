@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HANDYHelfer</string>
+
+    <!-- Home screen -->
+    <string name="hilfe_holen">Get help</string>
+    <string name="hilfe_holen_erklaerung">Calls %1$s.</string>
+    <string name="bildschirm_freigeben">Share my screen</string>
+    <string name="bildschirm_freigeben_erklaerung">Opens RustDesk so %1$s can see your phone.</string>
+    <string name="zustand_ueberschrift">How your phone is doing</string>
+    <string name="alles_in_ordnung">Nothing unusual found.</string>
+    <string name="geraet_zeile">%1$s · Android %2$s · HANDYHelfer %3$s</string>
+
+    <!-- Setup -->
+    <string name="einrichtung">Choose your helper</string>
+    <string name="einrichtung_erklaerung">HANDYHelfer knows exactly one person who may help. That is deliberate: if someone calls claiming to be from a company, they cannot talk you into entering a different number — there is no field for one.</string>
+    <string name="name_label">Name</string>
+    <string name="name_hinweis">for example: Thomas</string>
+    <string name="nummer_label">Phone number</string>
+    <string name="nummer_hinweis">for example: +49 170 1234567</string>
+    <string name="speichern">Save</string>
+    <string name="nummer_unbrauchbar">This number cannot be called. Please check it again.</string>
+    <string name="name_fehlt">Please enter a name.</string>
+    <string name="gespeichert">Saved.</string>
+
+    <!-- Log -->
+    <string name="protokoll">Log</string>
+    <string name="protokoll_erklaerung">This is when help was requested. The list stays on this phone and cannot be deleted.</string>
+    <string name="protokoll_leer">Nothing has happened yet.</string>
+    <string name="vorgang_hilfe_geholt">Asked %1$s for help</string>
+    <string name="vorgang_fernhilfe">Shared screen with %1$s</string>
+    <string name="vorgang_helfer_geaendert">Helper changed to %1$s</string>
+
+    <!-- Messages -->
+    <string name="fernhilfe_fehlt_titel">RustDesk is missing</string>
+    <string name="fernhilfe_fehlt_text">RustDesk must be installed before anyone can see your screen. It is not in the Play Store — shall I open its download page?</string>
+    <string name="fernhilfe_oeffnen_gescheitert">RustDesk could not be opened.</string>
+    <string name="ja_oeffnen">Open page</string>
+    <string name="abbrechen">Cancel</string>
+    <string name="anruf_nicht_erlaubt">HANDYHelfer is not allowed to place calls itself. The number is now in the phone app — tap Call there.</string>
+
+    <!-- Findings: what the helper should notice -->
+    <string name="befund_flugmodus_an">Airplane mode is on. Calls cannot get through.</string>
+    <string name="befund_kein_netz">No connection to the internet.</string>
+    <string name="befund_stumm">The phone is silenced. You will not hear it ring.</string>
+    <string name="befund_klingelton_leise">The ringer is set to %1$s out of %2$s. That is easy to miss.</string>
+    <string name="befund_nicht_stoeren">“Do not disturb” is on. Calls stay silent.</string>
+    <string name="befund_speicher_fast_voll">Storage is nearly full, only %1$s MB left. Updates will fail.</string>
+    <string name="befund_speicher_knapp">Storage is getting tight, %1$s MB left.</string>
+    <string name="befund_akku_schwach">The battery is at %1$s percent.</string>
+    <string name="befund_akkusparmodus_an">Battery saver is on. It shuts down apps in the background.</string>
+    <string name="befund_lange_kein_neustart">No restart for %1$s days. A lot of problems solve themselves that way.</string>
+    <string name="befund_schrift_sehr_gross">Text size is set very large. Some apps then cut off their buttons.</string>
+    <string name="befund_android_alt">Android %1$s no longer receives security updates.</string>
+    <string name="befund_fernhilfe_fehlt">RustDesk is not installed. Without it nobody can look at the screen.</string>
+
+    <!-- Help -->
+    <string name="hilfe">Help</string>
+    <string name="hilfe_text">
+        <![CDATA[
+        <h3>What is this for?</h3>
+        <p>A button that fetches help. You tap it, and the person you chose gets
+        a call.</p>
+
+        <h3>And how do they see my phone?</h3>
+        <p>That is what <b>RustDesk</b> is for, a separate program. The second
+        button opens it. Your helper only sees your screen once you agree on the
+        phone — Android demands that for every session, and nobody can get
+        around it.</p>
+
+        <h3>Why can I only enter one person?</h3>
+        <p>Because that is the protection. There are callers who pose as company
+        staff and try to talk you into entering a different number. HANDYHelfer
+        has no field for that. Anyone who wanted to would first have to explain
+        how to open the setup screen — and that is the point to hang up.</p>
+
+        <h3>What does my helper see of me?</h3>
+        <p>Only what is on the screen, and only while you have agreed.
+        HANDYHelfer itself sends nothing anywhere: the status report on the home
+        screen is <i>displayed</i>, not transmitted. Your helper reads it when
+        looking at the screen.</p>
+
+        <h3>Who was connected, and when?</h3>
+        <p>That is in the log. It stays on this phone and cannot be deleted from
+        within the app.</p>
+        ]]>
+    </string>
+</resources>

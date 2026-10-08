@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      Zwei Berechtigungen, mehr nicht.
+
+      CALL_PHONE waehlt die hinterlegte Nummer ohne Zwischenschritt. Wird sie
+      verweigert, faellt die App auf ACTION_DIAL zurueck - dann steht die
+      Nummer im Telefon und es fehlt ein Tipp.
+
+      ACCESS_NETWORK_STATE ist eine normale Berechtigung ohne Dialog und sagt
+      nur, ob ueberhaupt eine Verbindung besteht.
+
+      Bewusst NICHT hier: BIND_ACCESSIBILITY_SERVICE und alles rund um
+      MediaProjection. HANDYHelfer sieht keinen Bildschirm und steuert nichts
+      fern - das macht RustDesk. Damit bleibt die App ausserhalb der
+      Play-Regeln zur Accessibility-API, die seit April 2026 deutlich enger
+      sind, und ausserhalb der Beschraenkungen des Advanced Protection Mode
+      ab Android 17.
+    -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--
+      Ohne Telefonie faellt der Hauptknopf aus - er ruft an. Die App bleibt auf
+      einem Tablet ohne SIM trotzdem brauchbar (Zustandsbericht, Fernhilfe
+      oeffnen), deshalb required="false" statt eines Ausschlusses im Store.
+    -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <!--
+      Ab Android 11 sind fremde Pakete unsichtbar, solange sie hier nicht
+      stehen. Genau eines statt QUERY_ALL_PACKAGES: Die Berechtigung, die
+      ganze App-Liste zu lesen, braucht bei Google eine Sondergenehmigung und
+      waere fuer diesen Zweck nicht zu rechtfertigen.
+    -->
+    <queries>
+        <package android:name="com.carriez.flutter_hbb" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
+    <!--
+      allowBackup="false": Das Protokoll und der hinterlegte Helfer sollen
+      nicht ueber eine Cloud-Sicherung auf ein anderes Geraet wandern. Wer
+      das Handy wechselt, richtet HANDYHelfer neu ein - das ist der Moment,
+      in dem jemand bewusst bestaetigt, wer helfen darf.
+    -->
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HandyHelfer">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".EinrichtungActivity"
+            android:exported="false"
+            android:label="@string/einrichtung"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".ProtokollActivity"
+            android:exported="false"
+            android:label="@string/protokoll"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".HilfeActivity"
+            android:exported="false"
+            android:label="@string/hilfe"
+            android:parentActivityName=".MainActivity" />
+    </application>
+</manifest>

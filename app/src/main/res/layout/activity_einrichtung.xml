@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grau_papier"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/einrichtung_erklaerung"
+            android:textSize="17sp"
+            android:textColor="@color/grau"
+            android:lineSpacingMultiplier="1.2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/name_label"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/grau_dunkel" />
+
+        <EditText
+            android:id="@+id/feld_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:hint="@string/name_hinweis"
+            android:textColorHint="@color/grau_leise"
+            android:inputType="textPersonName"
+            android:textSize="21sp"
+            android:autofillHints="name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/nummer_label"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/grau_dunkel" />
+
+        <EditText
+            android:id="@+id/feld_nummer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:hint="@string/nummer_hinweis"
+            android:textColorHint="@color/grau_leise"
+            android:inputType="phone"
+            android:textSize="21sp"
+            android:autofillHints="phone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/knopf_speichern"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/speichern"
+            android:textSize="21sp"
+            android:backgroundTint="@color/blau"
+            app:cornerRadius="16dp" />
+    </LinearLayout>
+</ScrollView>

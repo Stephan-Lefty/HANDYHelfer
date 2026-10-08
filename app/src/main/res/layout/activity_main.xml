@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Grosse Flaechen, viel Abstand, wenig auf einmal. Die Zielgruppe sind
+  Menschen, die ihr Handy nicht gern bedienen - der erste Knopf muss ohne
+  Lesen zu treffen sein.
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grau_papier"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/knopf_hilfe"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:text="@string/hilfe_holen"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/blau"
+            app:cornerRadius="20dp" />
+
+        <TextView
+            android:id="@+id/hilfe_erklaerung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="19sp"
+            android:textColor="@color/grau"
+            android:gravity="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/knopf_bildschirm"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginTop="26dp"
+            android:text="@string/bildschirm_freigeben"
+            android:textSize="22sp"
+            android:backgroundTint="@color/blau_tief"
+            app:cornerRadius="20dp" />
+
+        <TextView
+            android:id="@+id/bildschirm_erklaerung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:textColor="@color/grau"
+            android:gravity="center" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/grau_hell" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/zustand_ueberschrift"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            android:textColor="@color/grau_dunkel" />
+
+        <LinearLayout
+            android:id="@+id/befunde"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/geraet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="15sp"
+            android:textColor="@color/grau_leise" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/knopf_einrichtung"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/einrichtung" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/knopf_protokoll"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/protokoll" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/knopf_hilfe_text"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/hilfe" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Eine Zeile des Zustandsberichts. Die Stufe steht nicht nur in der Farbe,
+  sondern auch im Zeichen davor - wer rot-gruen-blind ist oder auf einem
+  schlecht eingestellten Bildschirm sitzt, muss sie trotzdem unterscheiden
+  koennen.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/zeichen"
+        android:layout_width="28dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/grau_dunkel" />
+</LinearLayout>

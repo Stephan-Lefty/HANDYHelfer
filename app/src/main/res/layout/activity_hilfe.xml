@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Die Hilfe steht im Programm, nicht nur in der README. Wer nicht
+  weiterkommt, klickt auf Hilfe - und nicht auf GitHub.
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grau_papier"
+    android:fillViewport="true">
+
+    <TextView
+        android:id="@+id/hilfe_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="17sp"
+        android:textColor="@color/grau_dunkel"
+        android:lineSpacingMultiplier="1.25" />
+</ScrollView>

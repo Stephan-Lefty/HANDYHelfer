@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HANDYHelfer</string>
+
+    <!-- Startbildschirm -->
+    <string name="hilfe_holen">Hilfe holen</string>
+    <string name="hilfe_holen_erklaerung">Ruft %1$s an.</string>
+    <string name="bildschirm_freigeben">Bildschirm freigeben</string>
+    <string name="bildschirm_freigeben_erklaerung">Öffnet RustDesk, damit %1$s auf dein Handy sehen kann.</string>
+    <string name="zustand_ueberschrift">Zustand deines Handys</string>
+    <string name="alles_in_ordnung">Nichts Auffälliges gefunden.</string>
+    <string name="geraet_zeile">%1$s · Android %2$s · HANDYHelfer %3$s</string>
+
+    <!-- Einrichtung -->
+    <string name="einrichtung">Helfer festlegen</string>
+    <string name="einrichtung_erklaerung">HANDYHelfer kennt genau eine Person, die helfen darf. Das ist Absicht: Wer dich anruft und behauptet, von einer Firma zu sein, kann dich nicht dazu bringen, eine fremde Nummer einzutragen – hier gibt es dafür kein Feld.</string>
+    <string name="name_label">Name</string>
+    <string name="name_hinweis">zum Beispiel: Thomas</string>
+    <string name="nummer_label">Telefonnummer</string>
+    <string name="nummer_hinweis">zum Beispiel: +49 170 1234567</string>
+    <string name="speichern">Speichern</string>
+    <string name="nummer_unbrauchbar">Diese Nummer kann nicht angerufen werden. Bitte noch einmal ansehen.</string>
+    <string name="name_fehlt">Bitte einen Namen eintragen.</string>
+    <string name="gespeichert">Gespeichert.</string>
+
+    <!-- Protokoll -->
+    <string name="protokoll">Protokoll</string>
+    <string name="protokoll_erklaerung">Hier steht, wann Hilfe geholt wurde. Die Liste bleibt auf diesem Handy und lässt sich nicht löschen.</string>
+    <string name="protokoll_leer">Noch nichts geschehen.</string>
+    <string name="vorgang_hilfe_geholt">Hilfe geholt bei %1$s</string>
+    <string name="vorgang_fernhilfe">Bildschirm freigegeben für %1$s</string>
+    <string name="vorgang_helfer_geaendert">Helfer geändert auf %1$s</string>
+
+    <!-- Meldungen -->
+    <string name="fernhilfe_fehlt_titel">RustDesk fehlt</string>
+    <string name="fernhilfe_fehlt_text">Damit jemand auf deinen Bildschirm sehen kann, muss RustDesk installiert sein. Es steht nicht im Play Store – soll ich die Seite zum Herunterladen öffnen?</string>
+    <string name="fernhilfe_oeffnen_gescheitert">RustDesk ließ sich nicht öffnen.</string>
+    <string name="ja_oeffnen">Seite öffnen</string>
+    <string name="abbrechen">Abbrechen</string>
+    <string name="anruf_nicht_erlaubt">HANDYHelfer darf nicht selbst anrufen. Die Nummer steht jetzt im Telefon – dort auf Anrufen tippen.</string>
+
+    <!-- Befunde: was dem Helfer auffallen soll -->
+    <string name="befund_flugmodus_an">Der Flugmodus ist an. Anrufe kommen nicht durch.</string>
+    <string name="befund_kein_netz">Keine Verbindung ins Internet.</string>
+    <string name="befund_stumm">Das Handy ist stumm gestellt. Ein Klingeln hört man nicht.</string>
+    <string name="befund_klingelton_leise">Der Klingelton steht auf %1$s von %2$s. Das überhört man leicht.</string>
+    <string name="befund_nicht_stoeren">„Nicht stören“ ist eingeschaltet. Anrufe bleiben still.</string>
+    <string name="befund_speicher_fast_voll">Der Speicher ist fast voll, nur noch %1$s MB frei. Aktualisierungen schlagen dann fehl.</string>
+    <string name="befund_speicher_knapp">Der Speicher wird knapp, noch %1$s MB frei.</string>
+    <string name="befund_akku_schwach">Der Akku ist bei %1$s Prozent.</string>
+    <string name="befund_akkusparmodus_an">Der Energiesparmodus ist an. Er beendet Apps im Hintergrund.</string>
+    <string name="befund_lange_kein_neustart">Seit %1$s Tagen kein Neustart. Vieles löst sich damit von selbst.</string>
+    <string name="befund_schrift_sehr_gross">Die Schrift ist stark vergrößert. Manche Apps zeigen dann abgeschnittene Knöpfe.</string>
+    <string name="befund_android_alt">Android %1$s bekommt keine Sicherheitsaktualisierungen mehr.</string>
+    <string name="befund_fernhilfe_fehlt">RustDesk ist nicht installiert. Ohne das kann niemand auf den Bildschirm sehen.</string>
+
+    <!-- Hilfe -->
+    <string name="hilfe">Hilfe</string>
+    <string name="hilfe_text">
+        <![CDATA[
+        <h3>Wofür ist das?</h3>
+        <p>Ein Knopf, der Hilfe holt. Du tippst darauf, und die Person, die du
+        festgelegt hast, wird angerufen.</p>
+
+        <h3>Und wie sieht sie mein Handy?</h3>
+        <p>Dafür ist <b>RustDesk</b> da, ein eigenes Programm. Der zweite Knopf
+        öffnet es. Dein Helfer sieht deinen Bildschirm erst, wenn du am Handy
+        zustimmst – das verlangt Android bei jeder Sitzung neu, und niemand kann
+        es umgehen.</p>
+
+        <h3>Warum kann ich nur eine Person eintragen?</h3>
+        <p>Weil das der Schutz ist. Es gibt Anrufe von Leuten, die sich als
+        Mitarbeiter einer Firma ausgeben und dazu überreden wollen, eine fremde
+        Nummer einzugeben. In HANDYHelfer gibt es dafür kein Feld. Wer dich dazu
+        bringen will, müsste dir erklären, wie man die Einrichtung öffnet – und
+        spätestens da sollte man auflegen.</p>
+
+        <h3>Was sieht mein Helfer von mir?</h3>
+        <p>Nur das, was auf dem Bildschirm steht, und nur solange du zugestimmt
+        hast. HANDYHelfer selbst schickt nichts irgendwohin: Der Zustandsbericht
+        auf der Startseite wird <i>angezeigt</i>, nicht übertragen. Dein Helfer
+        liest ihn, wenn er auf den Bildschirm sieht.</p>
+
+        <h3>Wer war wann dran?</h3>
+        <p>Das steht im Protokoll. Es bleibt auf diesem Handy und lässt sich aus
+        der App heraus nicht löschen.</p>
+        ]]>
+    </string>
+</resources>

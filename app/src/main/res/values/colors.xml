@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Die gemeinsame Palette aller Programme. Die Werte und ihre Begruendung
+  stehen in assets/farben.md; hier stehen sie nur noch einmal in der Form,
+  die Android lesen kann.
+
+  Eine Falle ist dort beschrieben und gilt auch hier: grau_mitte taugt nur
+  auf dunklem Grund. Auf hellem erreicht es 2,48 Kontrast - dafuer gibt es
+  grau_leise.
+-->
+<resources>
+    <color name="blau_hell">#0e8af6</color>
+    <color name="blau">#1668e3</color>
+    <color name="blau_tief">#0047a7</color>
+    <color name="blau_dunkel">#0d3a8a</color>
+    <color name="blau_nacht">#0d2141</color>
+    <color name="blau_leucht">#6cb6ff</color>
+
+    <color name="grau_papier">#f7f9fc</color>
+    <color name="grau_hell">#d6dde8</color>
+    <color name="grau_mitte">#97a1ad</color>
+    <color name="grau_leise">#667080</color>
+    <color name="grau">#5b6672</color>
+    <color name="grau_dunkel">#3a4048</color>
+    <color name="grau_kohle">#2b323c</color>
+    <color name="grau_nacht">#20262f</color>
+    <color name="weiss">#ffffff</color>
+
+    <color name="rot">#c62828</color>
+    <color name="rot_hell">#ef9a9a</color>
+    <color name="gruen">#2e7d32</color>
+    <color name="gruen_hell">#81c784</color>
+</resources>

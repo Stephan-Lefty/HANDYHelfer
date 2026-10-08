@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!--
+      Die Farbpalette liegt vollstaendig vor, nicht nur in den gerade
+      benutzten Toenen. Sie ist in allen Programmen dieselbe Datei (siehe
+      assets/farben.md); wer sie auf das Benutzte kuerzt, hat beim naechsten
+      Bildschirm wieder die Frage "welches Blau war das noch?".
+    -->
+    <issue id="UnusedResources">
+        <ignore path="src/main/res/values/colors.xml" />
+    </issue>
+
+    <!--
+      Lint meldet mipmap-anydpi-v26 als ueberfluessig, weil minSdk ohnehin 26
+      ist, und schlaegt mipmap-anydpi vor. Ausprobiert am 2026-10-08: Danach
+      findet AAPT das Symbol nicht mehr -
+
+        error: resource mipmap/ic_launcher ... not found
+
+      Der Hinweis stimmt fuer gewoehnliche Ressourcen; adaptive-icon braucht
+      den Versionsqualifier trotzdem. Nicht noch einmal umstellen.
+    -->
+    <issue id="ObsoleteSdkInt">
+        <ignore path="src/main/res/mipmap-anydpi-v26" />
+    </issue>
+</lint>
