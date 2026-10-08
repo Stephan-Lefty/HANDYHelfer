@@ -10,8 +10,10 @@ class AssistentTest {
     private fun leer() = Stand(
         fernhilfeInstalliert = false,
         bedienhilfeAktiv = false,
-        fernhilfeAusBrowser = false,
-        fdroidDa = false,
+        fernhilfeKannSteuern = true,
+        zusatzNoetig = false,
+        zusatzDa = false,
+        fernhilfeBrauchtPasswort = false,
         helferDa = false,
         anrufErlaubt = false,
         mehrereKarten = false,
@@ -23,8 +25,10 @@ class AssistentTest {
     private fun fertig() = Stand(
         fernhilfeInstalliert = true,
         bedienhilfeAktiv = true,
-        fernhilfeAusBrowser = false,
-        fdroidDa = false,
+        fernhilfeKannSteuern = true,
+        zusatzNoetig = false,
+        zusatzDa = false,
+        fernhilfeBrauchtPasswort = false,
         helferDa = true,
         anrufErlaubt = true,
         mehrereKarten = false,
@@ -36,29 +40,11 @@ class AssistentTest {
     private fun arten(s: Stand) = Assistent.schritte(s).map { it.art }
 
     @Test
-    fun `F-Droid steht schon vor der ersten Installation`() {
-        // Sonst fuehrt die Liste in dieselbe Falle, aus der sie heraushelfen
-        // soll: Datei aus dem Browser, Eingabesteuerung gesperrt.
-        val liste = arten(leer())
-        val fdroid = liste.indexOf(SchrittArt.FDROID_HOLEN)
-        val rustdesk = liste.indexOf(SchrittArt.FERNHILFE_INSTALLIEREN)
-        assertTrue(fdroid in 0 until rustdesk)
-    }
-
-    @Test
-    fun `mit F-Droid beginnt die Liste direkt bei RustDesk`() {
-        assertEquals(
-            SchrittArt.FERNHILFE_INSTALLIEREN,
-            arten(leer().copy(fdroidDa = true)).first(),
-        )
-    }
-
-    @Test
     fun `ohne Fernhilfe wird nicht nach ihren Schaltern gefragt`() {
         // Sonst stuenden drei Schritte da, die sich erst beantworten lassen,
         // wenn der erste erledigt ist - das liest sich wie vier Probleme
         // statt wie eines.
-        val liste = arten(leer().copy(fdroidDa = true))
+        val liste = arten(leer())
         assertEquals(
             listOf(
                 SchrittArt.FERNHILFE_INSTALLIEREN,
@@ -69,31 +55,6 @@ class AssistentTest {
             ),
             liste,
         )
-    }
-
-    @Test
-    fun `die eingeschraenkten Einstellungen stehen vor der Bedienhilfe`() {
-        // Reihenfolge ist hier Inhalt: Der gesperrte Schalter ist die Ursache,
-        // die fehlende Bedienhilfe nur die Folge.
-        val liste = arten(leer().copy(fernhilfeInstalliert = true))
-        val vorher = liste.indexOf(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN)
-        val nachher = liste.indexOf(SchrittArt.BEDIENHILFE)
-        assertTrue(vorher in 0 until nachher)
-    }
-
-    @Test
-    fun `laeuft die Bedienhilfe, verschwindet der unpruefbare Schritt`() {
-        val liste = arten(leer().copy(fernhilfeInstalliert = true, bedienhilfeAktiv = true))
-        assertFalse(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN in liste)
-        assertTrue(SchrittArt.BEDIENHILFE in liste)
-    }
-
-    @Test
-    fun `der Schritt zu den eingeschraenkten Einstellungen gilt als unpruefbar`() {
-        val schritt = Assistent.schritte(leer().copy(fernhilfeInstalliert = true))
-            .single { it.art == SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN }
-        assertFalse(schritt.pruefbar)
-        assertFalse(schritt.erledigt)
     }
 
     @Test
@@ -133,90 +94,8 @@ class AssistentTest {
     }
 
     @Test
-    fun `aus dem Browser installiert fuehrt zu F-Droid statt zur App-Info`() {
-        // Am 2026-10-08 am Geraet belegt: Bei Browser-Installation steht der
-        // Schalter auf "Gesteuert durch eingeschraenkte Einstellung" und laesst
-        // sich nicht antippen - und in der App-Info fehlt der Menuepunkt, mit
-        // dem man das aufheben koennte. Dann ist Neuinstallieren der kuerzere
-        // Weg, nicht das Suchen nach einem Schalter, den es nicht gibt.
-        val ausBrowser = leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = true)
-        assertTrue(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in arten(ausBrowser))
-        assertFalse(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN in arten(ausBrowser))
-    }
-
-    @Test
-    fun `ohne F-Droid kommt erst F-Droid, dann RustDesk`() {
-        // Die Falle, die am 2026-10-08 beinahe zugeschnappt waere: Wer die
-        // RustDesk-Datei selbst im Browser herunterlaedt, hat wieder den
-        // Paketinstallierer als Quelle - und dieselbe Sperre.
-        val liste = arten(leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = true))
-        val fdroid = liste.indexOf(SchrittArt.FDROID_HOLEN)
-        val rustdesk = liste.indexOf(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID)
-        assertTrue(fdroid in 0 until rustdesk)
-    }
-
-    @Test
-    fun `mit F-Droid entfaellt der erste der beiden Schritte`() {
-        val liste = arten(
-            leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = true, fdroidDa = true),
-        )
-        assertFalse(SchrittArt.FDROID_HOLEN in liste)
-        assertTrue(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in liste)
-    }
-
-    @Test
-    fun `anders installiert bleibt es beim Hinweis auf die App-Info`() {
-        val anders = leer().copy(fernhilfeInstalliert = true, fernhilfeAusBrowser = false)
-        assertTrue(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN in arten(anders))
-        assertFalse(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in arten(anders))
-    }
-
-    @Test
-    fun `laeuft die Bedienhilfe, ist die Herkunft gleichgueltig`() {
-        // Dann ist die Frage beantwortet, egal wie sie beantwortet wurde.
-        val laeuft = leer().copy(
-            fernhilfeInstalliert = true, fernhilfeAusBrowser = true, bedienhilfeAktiv = true,
-        )
-        assertFalse(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID in arten(laeuft))
-        assertFalse(SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN in arten(laeuft))
-    }
-
-    @Test
-    fun `die App-Pause steht, sobald die Fernhilfe da ist`() {
-        assertFalse(SchrittArt.KEINE_APP_PAUSE in arten(leer()))
-        assertTrue(SchrittArt.KEINE_APP_PAUSE in arten(leer().copy(fernhilfeInstalliert = true)))
-    }
-
-    @Test
-    fun `die App-Pause gilt als unpruefbar`() {
-        // isAutoRevokeWhitelisted beantwortet die Frage fuer fremde Pakete
-        // nicht - am 2026-10-08 ausprobiert. Ein Fragezeichen ist ehrlicher
-        // als ein Haken, der nichts belegt.
-        val schritt = Assistent.schritte(leer().copy(fernhilfeInstalliert = true))
-            .single { it.art == SchrittArt.KEINE_APP_PAUSE }
-        assertFalse(schritt.pruefbar)
-    }
-
-    @Test
     fun `die unpruefbare App-Pause verhindert fertig nicht`() {
         assertTrue(Assistent.fertig(fertig()))
-    }
-
-    @Test
-    fun `das feste Passwort wird erst nach der Installation gefragt`() {
-        // Vorher gibt es nichts, worin man es setzen koennte.
-        assertFalse(SchrittArt.FESTES_PASSWORT in arten(leer()))
-        assertTrue(SchrittArt.FESTES_PASSWORT in arten(leer().copy(fernhilfeInstalliert = true)))
-    }
-
-    @Test
-    fun `das feste Passwort bleibt stehen, auch wenn alles andere sitzt`() {
-        // Anders als die eingeschraenkten Einstellungen verschwindet es nicht:
-        // Es gibt keinen Folgeschritt, aus dessen Gelingen sich schliessen
-        // liesse, dass es gesetzt ist.
-        assertTrue(SchrittArt.FESTES_PASSWORT in arten(fertig()))
-        val schritt = Assistent.schritte(fertig()).single { it.art == SchrittArt.FESTES_PASSWORT }
-        assertFalse(schritt.pruefbar)
     }
 
     @Test
@@ -245,5 +124,99 @@ class AssistentTest {
         assertTrue(Assistent.blockiertHauptzweck(SchrittArt.ANRUFEN_DUERFEN))
         assertFalse(Assistent.blockiertHauptzweck(SchrittArt.BEDIENHILFE))
         assertFalse(Assistent.blockiertHauptzweck(SchrittArt.SYMBOL))
+    }
+}
+
+/**
+ * Was der Assistent aus der Wahl der Fernhilfe macht.
+ *
+ * Der Tag am Geraet (2026-10-08) hat gezeigt, dass die Wahl nicht frei ist:
+ * Android laesst die Eingabesteuerung nur fuer Apps aus dem Play Store zu, und
+ * die quelloffenen muessen sie dort weglassen. Diese Faelle halten fest, dass
+ * die Liste das ehrlich sagt, statt einen Schalter anzubieten, der ausgegraut
+ * bleibt.
+ */
+class FernhilfeartTest {
+
+    private fun stand(
+        kannSteuern: Boolean = true,
+        zusatzNoetig: Boolean = false,
+        zusatzDa: Boolean = false,
+        passwort: Boolean = false,
+    ) = Stand(
+        fernhilfeInstalliert = true,
+        bedienhilfeAktiv = false,
+        fernhilfeKannSteuern = kannSteuern,
+        zusatzNoetig = zusatzNoetig,
+        zusatzDa = zusatzDa,
+        fernhilfeBrauchtPasswort = passwort,
+        helferDa = true,
+        anrufErlaubt = true,
+        mehrereKarten = false,
+        karteFestgelegt = true,
+        balkenDa = true,
+        symbolDa = true,
+    )
+
+    private fun arten(s: Stand) = Assistent.schritte(s).map { it.art }
+
+    @Test
+    fun `kann die Fernhilfe nicht steuern, sagt die Liste das statt den Schalter anzubieten`() {
+        val liste = arten(stand(kannSteuern = false))
+        assertTrue(SchrittArt.NUR_ZUSEHEN in liste)
+        assertFalse(SchrittArt.BEDIENHILFE in liste)
+    }
+
+    @Test
+    fun `kann sie steuern, steht der Schalter da und nicht die Entschuldigung`() {
+        val liste = arten(stand(kannSteuern = true))
+        assertTrue(SchrittArt.BEDIENHILFE in liste)
+        assertFalse(SchrittArt.NUR_ZUSEHEN in liste)
+    }
+
+    @Test
+    fun `das Zusatzpaket steht vor der Bedienhilfe`() {
+        // Ohne das Add-On gibt es den Schalter gar nicht, den der naechste
+        // Schritt umlegen will.
+        val liste = arten(stand(zusatzNoetig = true, zusatzDa = false))
+        val zusatz = liste.indexOf(SchrittArt.ZUSATZ_INSTALLIEREN)
+        val schalter = liste.indexOf(SchrittArt.BEDIENHILFE)
+        assertTrue(zusatz in 0 until schalter)
+    }
+
+    @Test
+    fun `ist das Zusatzpaket da, wird nicht mehr danach gefragt`() {
+        assertFalse(SchrittArt.ZUSATZ_INSTALLIEREN in arten(stand(zusatzNoetig = true, zusatzDa = true)))
+    }
+
+    @Test
+    fun `nach dem Passwort wird nur gefragt, wo es eines braucht`() {
+        // TeamViewer und AnyDesk kommen ohne aus - dort bestaetigt die
+        // Betroffene am Geraet. Ein Schritt, der ins Leere zeigt, verwirrt nur.
+        assertFalse(SchrittArt.FESTES_PASSWORT in arten(stand(passwort = false)))
+        assertTrue(SchrittArt.FESTES_PASSWORT in arten(stand(passwort = true)))
+    }
+
+    @Test
+    fun `nur Zusehen verhindert fertig nicht`() {
+        // Es ist kein offener Punkt, sondern eine Eigenschaft der Wahl. Wer
+        // damit leben kann, ist fertig eingerichtet.
+        assertTrue(Assistent.fertig(stand(kannSteuern = false)))
+    }
+
+    @Test
+    fun `TeamViewer traegt das Add-On und braucht kein Passwort`() {
+        val tv = Fernhilfeart.TEAMVIEWER
+        assertTrue(tv.kannSteuern)
+        assertFalse(tv.brauchtPasswort)
+        assertEquals("com.teamviewer.quicksupport.addon.universal", tv.zusatzPaket)
+    }
+
+    @Test
+    fun `die quelloffenen koennen nicht steuern - das ist der Befund des Tages`() {
+        assertFalse(Fernhilfeart.RUSTDESK.kannSteuern)
+        assertFalse(Fernhilfeart.HOPTODESK.kannSteuern)
+        assertTrue(Fernhilfeart.RUSTDESK.quelloffen)
+        assertTrue(Fernhilfeart.HOPTODESK.quelloffen)
     }
 }

@@ -41,13 +41,19 @@
 
     <!--
       Ab Android 11 sind fremde Pakete unsichtbar, solange sie hier nicht
-      stehen. Genau eines statt QUERY_ALL_PACKAGES: Die Berechtigung, die
-      ganze App-Liste zu lesen, braucht bei Google eine Sondergenehmigung und
-      waere fuer diesen Zweck nicht zu rechtfertigen.
+      stehen. Eine kurze Liste statt QUERY_ALL_PACKAGES: Die Berechtigung,
+      die ganze App-Liste zu lesen, braucht bei Google eine Sondergenehmigung
+      und waere fuer diesen Zweck nicht zu rechtfertigen.
+
+      Es sind genau die vier Fernhilfen aus Fernhilfeart, plus das
+      TeamViewer-Zusatzpaket - mehr muss die App nicht sehen koennen.
     -->
     <queries>
+        <package android:name="com.teamviewer.quicksupport.market" />
+        <package android:name="com.teamviewer.quicksupport.addon.universal" />
+        <package android:name="com.anydesk.anydeskandroid" />
+        <package android:name="com.hoptodesk.app" />
         <package android:name="com.carriez.flutter_hbb" />
-        <package android:name="org.fdroid.fdroid" />
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" />

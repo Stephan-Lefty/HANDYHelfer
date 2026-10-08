@@ -8,8 +8,13 @@ package org.dialos.handyhelfer
 data class Stand(
     val fernhilfeInstalliert: Boolean,
     val bedienhilfeAktiv: Boolean,
-    val fernhilfeAusBrowser: Boolean,
-    val fdroidDa: Boolean,
+    /** Kann der Helfer mit dieser Fernhilfe wirklich tippen, oder nur zusehen? */
+    val fernhilfeKannSteuern: Boolean,
+    /** Braucht sie ein Zusatzpaket dafuer, und fehlt es noch? */
+    val zusatzNoetig: Boolean,
+    val zusatzDa: Boolean,
+    /** Verlangt sie ein Passwort, das sonst bei jeder Sitzung vorgelesen wird? */
+    val fernhilfeBrauchtPasswort: Boolean,
     val helferDa: Boolean,
     val anrufErlaubt: Boolean,
     val mehrereKarten: Boolean,
@@ -20,9 +25,8 @@ data class Stand(
 
 enum class SchrittArt {
     FERNHILFE_INSTALLIEREN,
-    EINGESCHRAENKTE_EINSTELLUNGEN,
-    FDROID_HOLEN,
-    NEU_INSTALLIEREN_AUS_FDROID,
+    ZUSATZ_INSTALLIEREN,
+    NUR_ZUSEHEN,
     KEINE_APP_PAUSE,
     BEDIENHILFE,
     FESTES_PASSWORT,
@@ -63,68 +67,28 @@ object Assistent {
     fun schritte(stand: Stand): List<Schritt> {
         val liste = mutableListOf<Schritt>()
 
-        // F-Droid steht vor RustDesk, auch beim allerersten Mal: Wer RustDesk
-        // als Datei aus dem Browser laedt, bekommt die Eingabesteuerung
-        // gesperrt ("Gesteuert durch eingeschraenkte Einstellung") und auf
-        // vielen Geraeten keine Moeglichkeit, das wieder aufzuheben. Der
-        // Umweg ist also kein Umweg, sondern der einzige Weg, der haelt.
-        if (!stand.fernhilfeInstalliert && !stand.fdroidDa) {
-            liste += Schritt(SchrittArt.FDROID_HOLEN, erledigt = false)
-        }
         liste += Schritt(SchrittArt.FERNHILFE_INSTALLIEREN, stand.fernhilfeInstalliert)
 
         if (stand.fernhilfeInstalliert) {
-            // Nur zeigen, solange die Bedienhilfe noch nicht laeuft: Danach
-            // ist die Frage beantwortet, und ein Schritt, der sich nicht
-            // pruefen laesst, soll nicht dauerhaft herumstehen.
-            //
-            // Er steht VOR der Bedienhilfe, weil er sie sperrt: Bei einer per
-            // Browser geladenen APK ist der Schalter ausgegraut, und wer das
-            // nicht weiss, sucht an der falschen Stelle.
-            if (!stand.bedienhilfeAktiv) {
-                // Kam die App aus dem Browser, ist der Schalter gesperrt und
-                // laesst sich auf vielen Geraeten gar nicht freigeben - in der
-                // App-Info fehlt dort das Menue dafuer. Der ehrliche Rat ist
-                // dann nicht "such den Schalter", sondern "installier sie neu
-                // aus F-Droid": Das installiert sitzungsbasiert, und die
-                // Sperre greift gar nicht erst.
-                if (stand.fernhilfeAusBrowser) {
-                    // Reihenfolge ist hier der ganze Punkt: Wer die APK von
-                    // f-droid.org im Browser herunterlaedt, hat wieder den
-                    // Paketinstallierer als Quelle und dieselbe Sperre. Erst
-                    // F-Droid selbst, dann RustDesk daraus.
-                    if (!stand.fdroidDa) {
-                        liste += Schritt(SchrittArt.FDROID_HOLEN, erledigt = false)
-                    }
-                    liste += Schritt(SchrittArt.NEU_INSTALLIEREN_AUS_FDROID, erledigt = false)
-                } else {
-                    liste += Schritt(
-                        SchrittArt.EINGESCHRAENKTE_EINSTELLUNGEN,
-                        erledigt = false,
-                        pruefbar = false,
-                    )
-                }
+            // Das Zusatzpaket steht vor der Bedienhilfe: Ohne es gibt es den
+            // Schalter gar nicht, den der naechste Schritt umlegen will.
+            if (stand.zusatzNoetig && !stand.zusatzDa) {
+                liste += Schritt(SchrittArt.ZUSATZ_INSTALLIEREN, erledigt = false)
             }
-            liste += Schritt(SchrittArt.BEDIENHILFE, stand.bedienhilfeAktiv)
 
-            // Nicht pruefbar: RustDesks Einstellungen sind fuer fremde Apps
-            // nicht lesbar. Der Schritt steht trotzdem da, weil er den Alltag
-            // entscheidet - ohne festes Passwort muss bei jeder Sitzung ein
-            // Einmalpasswort vorgelesen werden, und genau daran scheitert es.
-            liste += Schritt(
-                SchrittArt.FESTES_PASSWORT,
-                erledigt = false,
-                pruefbar = false,
-            )
+            if (stand.fernhilfeKannSteuern) {
+                liste += Schritt(SchrittArt.BEDIENHILFE, stand.bedienhilfeAktiv)
+            } else {
+                // Ehrlich sagen, was nicht geht, statt einen Schalter
+                // anzubieten, den Android ausgegraut laesst. Am 2026-10-08
+                // am Geraet durchexerziert.
+                liste += Schritt(SchrittArt.NUR_ZUSEHEN, erledigt = false, pruefbar = false)
+            }
 
-            // Eine Fernwartungs-App liegt monatelang ungenutzt herum - genau
-            // der Fall, fuer den Android die Rechte wieder einzieht. Im
-            // Ernstfall stuende dann ein RustDesk ohne Berechtigungen da.
-            //
-            // Unpruefbar: `isAutoRevokeWhitelisted` beantwortet die Frage fuer
-            // *fremde* Pakete nicht. Am 2026-10-08 ausprobiert - am Geraet
-            // stand der Schalter sichtbar auf an, die Abfrage meldete trotzdem
-            // nichts. Lieber ein Fragezeichen als ein verschwiegenes Problem.
+            if (stand.fernhilfeBrauchtPasswort) {
+                liste += Schritt(SchrittArt.FESTES_PASSWORT, erledigt = false, pruefbar = false)
+            }
+
             liste += Schritt(SchrittArt.KEINE_APP_PAUSE, erledigt = false, pruefbar = false)
         }
 

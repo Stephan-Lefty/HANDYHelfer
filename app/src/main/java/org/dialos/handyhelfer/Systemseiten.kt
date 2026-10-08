@@ -36,7 +36,7 @@ object Systemseiten {
         context,
         Intent(
             Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-            "package:${Diagnose.FERNHILFE_PAKET}".toUri(),
+            "package:${Fernhilfe.gefunden(context)?.paket ?: Fernhilfeart.VORSCHLAG.paket}".toUri(),
         ),
     )
 
@@ -47,21 +47,17 @@ object Systemseiten {
      * sperrt: F-Droid installiert sitzungsbasiert, und die eingeschraenkten
      * Einstellungen greifen dann nicht.
      */
-    fun fdroidSeite(context: Context): Boolean = starten(
-        context,
-        Intent(
-            Intent.ACTION_VIEW,
-            "https://f-droid.org/packages/${Diagnose.FERNHILFE_PAKET}/".toUri(),
-        ),
-    )
+    /** Die Bezugsquelle des Zusatzpakets, falls die Fernhilfe eines braucht. */
+    fun zusatzHolen(context: Context): Boolean {
+        val quelle = Fernhilfe.gefunden(context)?.zusatzQuelle ?: return false
+        return starten(context, Intent(Intent.ACTION_VIEW, quelle.toUri()))
+    }
 
-    /** F-Droid selbst - die App, nicht der Katalogeintrag. */
-    fun fdroidHolen(context: Context): Boolean =
-        starten(context, Intent(Intent.ACTION_VIEW, "https://f-droid.org/".toUri()))
-
-    /** Die Bezugsquelle fuer RustDesk - nicht der Play Store, dort fehlt es. */
-    fun fernhilfeHolen(context: Context): Boolean =
-        starten(context, Intent(Intent.ACTION_VIEW, Fernhilfe.BEZUGSQUELLE.toUri()))
+    /** Die Bezugsquelle der gefundenen oder vorgeschlagenen Fernhilfe. */
+    fun fernhilfeHolen(context: Context): Boolean {
+        val quelle = (Fernhilfe.gefunden(context) ?: Fernhilfeart.VORSCHLAG).bezugsquelle
+        return starten(context, Intent(Intent.ACTION_VIEW, quelle.toUri()))
+    }
 
     /**
      * Ob der Bedienhilfe-Dienst von RustDesk laeuft.
@@ -71,11 +67,12 @@ object Systemseiten {
      * Berechtigung lesbar.
      */
     fun bedienhilfeAktiv(context: Context): Boolean {
+        val art = Fernhilfe.gefunden(context) ?: return false
         val aktive = Settings.Secure.getString(
             context.contentResolver,
             Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
         ).orEmpty()
-        return aktive.contains(Diagnose.FERNHILFE_PAKET, ignoreCase = true)
+        return aktive.contains(art.paket, ignoreCase = true)
     }
 
     private fun starten(context: Context, absicht: Intent): Boolean = try {

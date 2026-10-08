@@ -31,16 +31,6 @@ import android.provider.Settings
  */
 object Diagnose {
 
-    /**
-     * Paketname von RustDesk.
-     *
-     * Belegt am 2026-10-08 ueber F-Droid und APKMirror (Herausgeber "CarrieZ
-     * Studio"). Nicht geraten - ein falscher Name faellt naemlich nicht auf:
-     * Die App meldete dann nur stets "Fernhilfe fehlt", obwohl RustDesk da
-     * waere.
-     */
-    const val FERNHILFE_PAKET = "com.carriez.flutter_hbb"
-
     fun erheben(context: Context): Zustand {
         val akku = akkuStand(context)
         val speicher = speicher()
@@ -69,7 +59,7 @@ object Diagnose {
             netzVerbunden = netzVerbunden(context),
             schriftSkalierung = context.resources.configuration.fontScale,
             betriebszeitStunden = SystemClock.elapsedRealtime() / 3_600_000L,
-            fernhilfeInstalliert = installiert(context, FERNHILFE_PAKET),
+            fernhilfeInstalliert = Fernhilfe.installiert(context),
         )
     }
 
