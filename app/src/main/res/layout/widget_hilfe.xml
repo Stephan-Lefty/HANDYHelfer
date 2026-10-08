@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Ein Balken ueber die volle Breite statt eines Symbols. Die Begruendung steht
+  in HilfeWidgetProvider: Wer mit dem Handy fremdelt, trifft ein Symbol
+  zwischen zwanzig anderen nicht zuverlaessig.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/widget_knopf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/widget_hintergrund"
+        android:gravity="center"
+        android:minHeight="76dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="18dp"
+        android:text="@string/hilfe_holen"
+        android:textColor="@color/weiss"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/widget_erklaerung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textColor="@color/weiss"
+        android:textSize="13sp"
+        android:shadowColor="@color/grau_nacht"
+        android:shadowRadius="3"
+        android:maxLines="1"
+        android:ellipsize="end" />
+</LinearLayout>

@@ -50,6 +50,20 @@ zu beantworten:
 
 ## Offen
 
+### Widget und Kachel sind ungesehen
+
+Beide sind seit dem 08.10. gebaut und beim System angemeldet (per `dumpsys
+appwidget` und `cmd statusbar add-tile` geprüft), aber **noch nie angesehen**.
+Ob der Balken auf dem Startbildschirm gut aussteht, ob der Name darunter
+abgeschnitten wird, ob die Kachel ein brauchbares Symbol zeigt – alles offen.
+Dafür braucht es ein entsperrtes Gerät.
+
+Offen ist auch die Entscheidung dahinter: Das Widget **öffnet die App**, statt
+sofort anzurufen. Ein Tipp mehr, dafür kein Fehlanruf beim Streifen des
+Startbildschirms, und der Zustandsbericht steht gleich mit da. Wenn sich im
+Alltag zeigt, dass der zusätzliche Tipp die Hürde ist, gehört das umgedreht –
+dann aber mit einer Rückfrage („Thomas anrufen?"), nicht ohne.
+
 ### „Nicht stören" ist oft nicht feststellbar
 
 `Diagnose.nichtStoeren` fragt `NotificationManager.currentInterruptionFilter`.

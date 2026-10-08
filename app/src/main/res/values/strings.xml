@@ -11,6 +11,9 @@
     <string name="alles_in_ordnung">Nichts Auffälliges gefunden.</string>
     <string name="geraet_zeile">%1$s · Android %2$s · HANDYHelfer %3$s</string>
 
+    <string name="widget_beschreibung">Ein breiter Knopf, der Hilfe holt</string>
+    <string name="widget_niemand_festgelegt">Noch niemand festgelegt</string>
+
     <!-- Einrichtung -->
     <string name="einrichtung">Helfer festlegen</string>
     <string name="einrichtung_erklaerung">HANDYHelfer kennt genau eine Person, die helfen darf. Das ist Absicht: Wer dich anruft und behauptet, von einer Firma zu sein, kann dich nicht dazu bringen, eine fremde Nummer einzutragen – hier gibt es dafür kein Feld.</string>

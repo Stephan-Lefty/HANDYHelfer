@@ -85,5 +85,35 @@
             android:exported="false"
             android:label="@string/hilfe"
             android:parentActivityName=".MainActivity" />
+
+        <!--
+          Die Kachel in den Schnelleinstellungen. Sie ist der verlaesslichste
+          der drei Wege zum Knopf: Sie laesst sich auch dann erreichen, wenn
+          eine fremde App im Vordergrund klemmt und der Startbildschirm gerade
+          nicht in Reichweite ist.
+        -->
+        <service
+            android:name=".HilfeTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_kachel"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <!-- Der bildschirmbreite Balken; Begruendung in HilfeWidgetProvider. -->
+        <receiver
+            android:name=".HilfeWidgetProvider"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/hilfe_widget_info" />
+        </receiver>
     </application>
 </manifest>

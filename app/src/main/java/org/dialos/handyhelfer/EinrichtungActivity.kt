@@ -52,6 +52,8 @@ class EinrichtungActivity : AppCompatActivity() {
         // Ein Helferwechsel gehoert ins Protokoll. Wer spaeter nachsieht, wer
         // Zugriff hatte, muss auch sehen, wann sich das geaendert hat.
         Protokoll.anhaengen(this, Vorgang.HELFER_GEAENDERT, name.trim())
+        // Sonst stuende im Widget noch der alte Name.
+        HilfeWidgetProvider.erneuern(this)
         Toast.makeText(this, R.string.gespeichert, Toast.LENGTH_SHORT).show()
         finish()
     }

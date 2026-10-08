@@ -11,6 +11,9 @@
     <string name="alles_in_ordnung">Nothing unusual found.</string>
     <string name="geraet_zeile">%1$s · Android %2$s · HANDYHelfer %3$s</string>
 
+    <string name="widget_beschreibung">A wide button that fetches help</string>
+    <string name="widget_niemand_festgelegt">Nobody chosen yet</string>
+
     <!-- Setup -->
     <string name="einrichtung">Choose your helper</string>
     <string name="einrichtung_erklaerung">HANDYHelfer knows exactly one person who may help. That is deliberate: if someone calls claiming to be from a company, they cannot talk you into entering a different number — there is no field for one.</string>
